@@ -1,0 +1,1574 @@
+{% comment %}
+  Cyrasoul Ingredient Hub Section
+  Auto-renders correct ingredients per product based on product.handle.
+  Self-contained: no external JS/CSS dependencies.
+{% endcomment %}
+
+{% assign ih_show = false %}
+{% assign ih_product_name = '' %}
+{% assign ih_ingredients_json = '' %}
+
+{% case product.handle %}
+
+{% when 'dailyglow' %}
+  {% assign ih_show = true %}
+  {% assign ih_product_name = 'DailyGlow' %}
+  {% capture ih_ingredients_json %}[
+    {
+      "key": "msm",
+      "name": "MSM",
+      "fullName": "MSM (Metils\u00FClfonilmetan)",
+      "subtitle": "G\u00FCzellik Minerali",
+      "letter": "M",
+      "gradient": "linear-gradient(135deg, #d4a853 0%, #e8c97a 40%, #f0dba0 100%)",
+      "tags": ["Kolajen \u00DCretimi", "Cilt Esnekli\u011Fi", "Eklem Sa\u011Fl\u0131\u011F\u0131"],
+      "description": "Do\u011Fan\u0131n g\u00FCzellik minerali olarak bilinen MSM, kolajen \u00FCretimini destekleyerek cildinizin elastikiyetini ve p\u00FCr\u00FCzs\u00FCzl\u00FC\u011F\u00FCn\u00FC korur. Sa\u011Fl\u0131kl\u0131 sa\u00E7 ve t\u0131rnak b\u00FCy\u00FCmesine katk\u0131da bulunur.",
+      "research": [
+        { "label": "MSM ve kolajen sentezi \u00FCzerine klinik \u00E7al\u0131\u015Fma", "source": "PubMed Central", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8944283/" },
+        { "label": "MSM'in cilt sa\u011Fl\u0131\u011F\u0131 \u00FCzerindeki etkileri", "source": "PubMed Central", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10799148/" }
+      ],
+      "cert": { "label": "MSM Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "ginseng",
+      "name": "K\u0131rm\u0131z\u0131 Kore Ginsengi",
+      "fullName": "K\u0131rm\u0131z\u0131 Kore Ginsengi",
+      "subtitle": "Enerji ve Canl\u0131l\u0131k",
+      "letter": "K",
+      "gradient": "linear-gradient(135deg, #c45c4a 0%, #d98a6e 40%, #e6ab8e 100%)",
+      "tags": ["Kan Dola\u015F\u0131m\u0131", "Cilt Canl\u0131l\u0131\u011F\u0131", "Enerji"],
+      "description": "Kan dola\u015F\u0131m\u0131n\u0131 destekleyerek yorgun ve soluk cilt g\u00F6r\u00FCn\u00FCm\u00FCn\u00FC ele al\u0131r. Canl\u0131 ve \u0131\u015F\u0131lt\u0131l\u0131 bir cilt i\u00E7in geleneksel Kore bilgeli\u011Finden yararlan\u0131r.",
+      "research": [
+        { "label": "K\u0131rm\u0131z\u0131 ginseng ve cilt mikrosirk\u00FClasyonu", "source": "PubMed Central", "url": "#" },
+        { "label": "Panax ginseng'in antioksidan etkileri", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Kore Ginsengi Kalite Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "niasinamid",
+      "name": "Niasinamid",
+      "fullName": "Niasinamid (Vitamin B3)",
+      "subtitle": "Cilt Bariyeri G\u00FCc\u00FC",
+      "letter": "N",
+      "gradient": "linear-gradient(135deg, #7a9e6b 0%, #a3c08e 40%, #c2d8b0 100%)",
+      "tags": ["Cilt Bariyeri", "Nem Dengeleme", "Ayd\u0131nl\u0131k Ton"],
+      "description": "Cilt bariyerini g\u00FC\u00E7lendirerek nemi kilitler ve daha ayd\u0131nl\u0131k bir cilt tonu sa\u011Flar. G\u00F6zle g\u00F6r\u00FCl\u00FCr sonu\u00E7lar i\u00E7in klinik olarak kan\u0131tlanm\u0131\u015F bir bile\u015Fendir.",
+      "research": [
+        { "label": "Niasinamidin cilt bariyeri onar\u0131m\u0131ndaki rol\u00FC", "source": "PubMed Central", "url": "#" },
+        { "label": "Vitamin B3 ve hiperpigmentasyon tedavisi", "source": "Tandfonline", "url": "#" }
+      ],
+      "cert": { "label": "Niasinamid Safl\u0131k Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "cinko",
+      "name": "\u00C7inko",
+      "fullName": "\u00C7inko",
+      "subtitle": "Antioksidan Kalkan",
+      "letter": "C",
+      "gradient": "linear-gradient(135deg, #5b7e95 0%, #82a5b8 40%, #a8c4d4 100%)",
+      "tags": ["Antioksidan", "Ba\u011F\u0131\u015F\u0131kl\u0131k Deste\u011Fi", "H\u00FCcre Yenilenmesi"],
+      "description": "G\u00FC\u00E7l\u00FC bir antioksidan olarak serbest radikalleri n\u00F6tralize eder. H\u00FCcre yenilenmesini destekler ve ba\u011F\u0131\u015F\u0131kl\u0131k sistemini g\u00FC\u00E7lendirerek cildin savunma mekanizmas\u0131n\u0131 korur.",
+      "research": [
+        { "label": "\u00C7inkonun cilt sa\u011Fl\u0131\u011F\u0131ndaki antioksidan rol\u00FC", "source": "PubMed Central", "url": "#" },
+        { "label": "\u00C7inko takviyesi ve ba\u011F\u0131\u015F\u0131kl\u0131k fonksiyonu", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "\u00C7inko Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "selenyum",
+      "name": "Selenyum",
+      "fullName": "Selenyum",
+      "subtitle": "H\u00FCcre Koruyucusu",
+      "letter": "S",
+      "gradient": "linear-gradient(135deg, #8b6fad 0%, #a992c4 40%, #c7b6da 100%)",
+      "tags": ["Antioksidan", "Tiroid Sa\u011Fl\u0131\u011F\u0131", "H\u00FCcre Koruma"],
+      "description": "H\u00FCcreleri oksidatif strese kar\u015F\u0131 koruyan g\u00FC\u00E7l\u00FC bir iz mineraldir. Tiroid fonksiyonunu destekler ve cildin do\u011Fal yenilenme s\u00FCrecine katk\u0131da bulunur.",
+      "research": [
+        { "label": "Selenyumun antioksidan savunmadaki rol\u00FC", "source": "PubMed Central", "url": "#" },
+        { "label": "Selenyum ve tiroid fonksiyonu ili\u015Fkisi", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Selenyum Kalite Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "manganez",
+      "name": "Manganez",
+      "fullName": "Manganez",
+      "subtitle": "Kolajen Destek\u00E7i",
+      "letter": "Mn",
+      "gradient": "linear-gradient(135deg, #9b7a5b 0%, #b89a7a 40%, #d4bc9e 100%)",
+      "tags": ["Kolajen Sentezi", "Kemik Sa\u011Fl\u0131\u011F\u0131", "Metabolizma"],
+      "description": "Kolajen sentezinde kritik bir rol oynar. Kemik sa\u011Fl\u0131\u011F\u0131n\u0131 destekler ve enerji metabolizmas\u0131na katk\u0131da bulunarak genel canl\u0131l\u0131\u011Fa yard\u0131mc\u0131 olur.",
+      "research": [
+        { "label": "Manganez ve kolajen biyosentezi", "source": "PubMed Central", "url": "#" },
+        { "label": "Manganezin kemik metabolizmas\u0131ndaki rol\u00FC", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Manganez Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    }
+  ]{% endcapture %}
+
+{% when 'dreamglow' %}
+  {% assign ih_show = true %}
+  {% assign ih_product_name = 'DreamGlow' %}
+  {% capture ih_ingredients_json %}[
+    {
+      "key": "kolajen",
+      "name": "Kolajen Peptitleri",
+      "fullName": "Kolajen Peptitleri (Tip 1&3)",
+      "subtitle": "Cilt Yenilenmesi",
+      "letter": "K",
+      "gradient": "linear-gradient(135deg, #e8b4b8 0%, #f0cdd0 40%, #f7e1e3 100%)",
+      "tags": ["Cilt Elastikiyeti", "K\u0131r\u0131\u015F\u0131kl\u0131k Azaltma", "Nem Art\u0131\u015F\u0131"],
+      "description": "Tip 1 ve 3 kolajen peptitleri, cildin yap\u0131sal b\u00FCt\u00FCnl\u00FC\u011F\u00FCn\u00FC destekler. Gece boyunca cildinizin do\u011Fal onar\u0131m s\u00FCrecini g\u00FC\u00E7lendirerek sabaha daha gen\u00E7 ve canl\u0131 bir g\u00F6r\u00FCn\u00FCm kazand\u0131r\u0131r.",
+      "research": [
+        { "label": "Kolajen peptitlerinin cilt elastikiyetine etkisi", "source": "PubMed Central", "url": "#" },
+        { "label": "Oral kolajen takviyesi ve cilt ya\u015Flanmas\u0131", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Kolajen Peptit Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "melisa",
+      "name": "Melisa",
+      "fullName": "Melisa (Lemon Balm)",
+      "subtitle": "Sakinle\u015Ftirici Bitki",
+      "letter": "Me",
+      "gradient": "linear-gradient(135deg, #7db88f 0%, #a3d4b1 40%, #c8e8d2 100%)",
+      "tags": ["Uyku Kalitesi", "Stres Azaltma", "Sindirim Deste\u011Fi"],
+      "description": "Melisa, sinir sistemini yat\u0131\u015Ft\u0131rarak daha derin ve kaliteli bir uyku sa\u011Flar. Gece boyunca v\u00FCcudun do\u011Fal onar\u0131m s\u00FCrecini destekleyerek sabaha dinlenmi\u015F uyanman\u0131za yard\u0131mc\u0131 olur.",
+      "research": [
+        { "label": "Melisan\u0131n uyku kalitesi \u00FCzerindeki etkileri", "source": "PubMed Central", "url": "#" },
+        { "label": "Lemon balm ve anksiyete azaltma", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Melisa Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "papatya",
+      "name": "Papatya",
+      "fullName": "Papatya (Chamomile)",
+      "subtitle": "Do\u011Fal Rahatlama",
+      "letter": "P",
+      "gradient": "linear-gradient(135deg, #e8d44d 0%, #f0e080 40%, #f7ecb0 100%)",
+      "tags": ["Rahatlama", "Uyku Deste\u011Fi", "Anti-inflamatuar"],
+      "description": "Y\u00FCzy\u0131llard\u0131r kullan\u0131lan papatya, do\u011Fal sakinle\u015Ftirici \u00F6zellikleriyle gece rutininizin vazge\u00E7ilmezi. Cildi yat\u0131\u015Ft\u0131r\u0131rken uyku kalitesini art\u0131rarak b\u00FCt\u00FCnsel bir g\u00FCzellik deneyimi sunar.",
+      "research": [
+        { "label": "Papatyan\u0131n uyku kalitesine etkisi", "source": "PubMed Central", "url": "#" },
+        { "label": "Chamomile ve cilt yat\u0131\u015Ft\u0131rma", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Papatya Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "hyaluronik",
+      "name": "Hyal\u00FCronik Asit",
+      "fullName": "Hyal\u00FCronik Asit",
+      "subtitle": "Nem Uzman\u0131",
+      "letter": "H",
+      "gradient": "linear-gradient(135deg, #6ba3d6 0%, #92bde8 40%, #b8d5f2 100%)",
+      "tags": ["Derin Nemlendirme", "K\u0131r\u0131\u015F\u0131kl\u0131k Azaltma", "Cilt Dolgunlu\u011Fu"],
+      "description": "Kendi a\u011F\u0131rl\u0131\u011F\u0131n\u0131n 1000 kat\u0131 su tutabilen hyal\u00FCronik asit, cildinize derin nemlendirme sa\u011Flar. Gece boyunca cildi dolgunla\u015Ft\u0131rarak ince \u00E7izgilerin g\u00F6r\u00FCn\u00FCm\u00FCn\u00FC azalt\u0131r.",
+      "research": [
+        { "label": "Oral hyal\u00FCronik asit ve cilt nemlendirme", "source": "PubMed Central", "url": "#" },
+        { "label": "Hyal\u00FCronik asidin anti-aging etkileri", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Hyal\u00FCronik Asit Safl\u0131k Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "lteanin",
+      "name": "L-Teanin",
+      "fullName": "L-Teanin",
+      "subtitle": "Zihinsel Dinginlik",
+      "letter": "L",
+      "gradient": "linear-gradient(135deg, #8fa8c8 0%, #b0c5dc 40%, #d0dde8 100%)",
+      "tags": ["Rahatlama", "Uyku Kalitesi", "Zihinsel Berrakl\u0131k"],
+      "description": "Ye\u015Fil \u00E7ayda do\u011Fal olarak bulunan L-teanin, alfa beyin dalgalar\u0131n\u0131 art\u0131rarak sakin bir uyan\u0131kl\u0131k hali sa\u011Flar. Gece form\u00FCl\u00FCnde derin ve onar\u0131c\u0131 uykuyu destekler.",
+      "research": [
+        { "label": "L-teaninin uyku kalitesine etkisi", "source": "PubMed Central", "url": "#" },
+        { "label": "Teanin ve alfa beyin dalgalar\u0131", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "L-Teanin Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "vitaminc",
+      "name": "C Vitamini",
+      "fullName": "C Vitamini",
+      "subtitle": "Ayd\u0131nl\u0131k Form\u00FCl",
+      "letter": "C",
+      "gradient": "linear-gradient(135deg, #e8a040 0%, #f0b868 40%, #f7d090 100%)",
+      "tags": ["Kolajen Sentezi", "Antioksidan", "Cilt Ayd\u0131nlatma"],
+      "description": "G\u00FC\u00E7l\u00FC bir antioksidan olan C vitamini, kolajen sentezini destekleyerek cildin s\u0131k\u0131l\u0131\u011F\u0131n\u0131 korur. Gece boyunca serbest radikallere kar\u015F\u0131 koruma sa\u011Flayarak daha ayd\u0131nl\u0131k bir cilt tonuna katk\u0131da bulunur.",
+      "research": [
+        { "label": "C vitamininin kolajen sentezindeki rol\u00FC", "source": "PubMed Central", "url": "#" },
+        { "label": "Askorbik asit ve cilt foto-koruma", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "C Vitamini Safl\u0131k Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    }
+  ]{% endcapture %}
+
+{% when 'mindfuel' %}
+  {% assign ih_show = true %}
+  {% assign ih_product_name = 'MindFuel' %}
+  {% capture ih_ingredients_json %}[
+    {
+      "key": "maca",
+      "name": "Maca",
+      "fullName": "Maca",
+      "subtitle": "Enerji K\u00F6k\u00FC",
+      "letter": "Ma",
+      "gradient": "linear-gradient(135deg, #c49a6c 0%, #d8b48a 40%, #e8cca8 100%)",
+      "tags": ["Enerji", "Dayan\u0131kl\u0131l\u0131k", "Hormonal Denge"],
+      "description": "Peru da\u011Flar\u0131ndan gelen maca k\u00F6k\u00FC, do\u011Fal enerji seviyelerini y\u00FCkselterek g\u00FCn boyu aktif kalman\u0131z\u0131 sa\u011Flar. Hormonal dengeyi destekleyerek genel canl\u0131l\u0131\u011F\u0131 art\u0131r\u0131r.",
+      "research": [
+        { "label": "Maca k\u00F6k\u00FCn\u00FCn enerji ve dayan\u0131kl\u0131l\u0131\u011Fa etkisi", "source": "PubMed Central", "url": "#" },
+        { "label": "Lepidium meyenii ve hormonal denge", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Maca K\u00F6k\u00FC Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "ltirozin",
+      "name": "L-Tirozin",
+      "fullName": "L-Tirozin",
+      "subtitle": "Odaklanma Aminoasidi",
+      "letter": "L",
+      "gradient": "linear-gradient(135deg, #5e8fbd 0%, #82aed4 40%, #a8cae6 100%)",
+      "tags": ["Odaklanma", "Mental Performans", "Motivasyon"],
+      "description": "Dopamin ve noradrenalin \u00FCretimini destekleyen L-tirozin, zihinsel berrakl\u0131\u011F\u0131 ve odaklanmay\u0131 art\u0131r\u0131r. Stresli d\u00F6nemlerde kognitif performans\u0131 koruyarak daha \u00FCretken olman\u0131z\u0131 sa\u011Flar.",
+      "research": [
+        { "label": "L-tirozin ve kognitif performans", "source": "PubMed Central", "url": "#" },
+        { "label": "Tirozin takviyesinin stres alt\u0131nda etkisi", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "L-Tirozin Safl\u0131k Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "panaxginseng",
+      "name": "Panax Ginseng",
+      "fullName": "Panax Ginseng",
+      "subtitle": "Adaptojenik G\u00FC\u00E7",
+      "letter": "P",
+      "gradient": "linear-gradient(135deg, #b85c4a 0%, #d08a6e 40%, #e0a890 100%)",
+      "tags": ["Adaptojenik", "Enerji", "Bili\u015Fsel Destek"],
+      "description": "Binlerce y\u0131ll\u0131k gelene\u011Fe sahip Panax ginseng, v\u00FCcudun strese uyumunu destekler. Hem fiziksel dayan\u0131kl\u0131l\u0131\u011F\u0131 hem de zihinsel performans\u0131 art\u0131rarak g\u00FCnl\u00FCk ya\u015Fam\u0131n\u0131zda fark yarat\u0131r.",
+      "research": [
+        { "label": "Panax ginseng ve bili\u015Fsel fonksiyon", "source": "PubMed Central", "url": "#" },
+        { "label": "Ginseng'in adaptojenik etki mekanizmas\u0131", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Panax Ginseng Kalite Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "ginkgo",
+      "name": "Ginkgo Biloba",
+      "fullName": "Ginkgo Biloba",
+      "subtitle": "Beyin Dostu Yaprak",
+      "letter": "G",
+      "gradient": "linear-gradient(135deg, #6aaa6a 0%, #8ec48e 40%, #b2dab2 100%)",
+      "tags": ["Haf\u0131za", "Kan Dola\u015F\u0131m\u0131", "Antioksidan"],
+      "description": "D\u00FCnyan\u0131n en eski a\u011Fa\u00E7 t\u00FCrlerinden biri olan ginkgo, beyin kan dola\u015F\u0131m\u0131n\u0131 destekleyerek haf\u0131za ve konsantrasyonu g\u00FC\u00E7lendirir. G\u00FC\u00E7l\u00FC antioksidan \u00F6zellikleri ile beyin h\u00FCcrelerini korur.",
+      "research": [
+        { "label": "Ginkgo biloba ve haf\u0131za g\u00FC\u00E7lendirme", "source": "PubMed Central", "url": "#" },
+        { "label": "Ginkgo'nun serebral kan ak\u0131\u015F\u0131na etkisi", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Ginkgo Biloba Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "b12",
+      "name": "Vitamin B12",
+      "fullName": "Vitamin B12",
+      "subtitle": "Enerji Vitamini",
+      "letter": "B12",
+      "gradient": "linear-gradient(135deg, #d45c7e 0%, #e8829e 40%, #f0a8be 100%)",
+      "tags": ["Enerji Metabolizmas\u0131", "Sinir Sistemi", "Kan Yap\u0131m\u0131"],
+      "description": "Enerji metabolizmas\u0131n\u0131n temel ta\u015F\u0131 olan B12 vitamini, yorgunluk ve halsizli\u011Fin azalt\u0131lmas\u0131na katk\u0131da bulunur. Sinir sistemini destekleyerek zihinsel berrakl\u0131\u011F\u0131 korur.",
+      "research": [
+        { "label": "B12 vitamini ve enerji metabolizmas\u0131", "source": "PubMed Central", "url": "#" },
+        { "label": "Kobalamin eksikli\u011Fi ve n\u00F6rolojik etkiler", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Vitamin B12 Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    }
+  ]{% endcapture %}
+
+{% when 'reset-button' %}
+  {% assign ih_show = true %}
+  {% assign ih_product_name = 'Reset Button' %}
+  {% capture ih_ingredients_json %}[
+    {
+      "key": "devedikeni",
+      "name": "Deve Dikeni",
+      "fullName": "Deve Dikeni (Milk Thistle)",
+      "subtitle": "Karaci\u011Fer Koruyucusu",
+      "letter": "D",
+      "gradient": "linear-gradient(135deg, #8b7bb5 0%, #a99ccf 40%, #c7bde0 100%)",
+      "tags": ["Karaci\u011Fer Deste\u011Fi", "Detoks", "Antioksidan"],
+      "description": "Silimarin a\u00E7\u0131s\u0131ndan zengin deve dikeni, karaci\u011Ferin do\u011Fal detoks s\u00FCrecini destekler. Karaci\u011Fer h\u00FCcrelerinin yenilenmesine katk\u0131da bulunarak v\u00FCcudunuzun ar\u0131nma kapasitesini g\u00FC\u00E7lendirir.",
+      "research": [
+        { "label": "Silimarin ve karaci\u011Fer koruma mekanizmas\u0131", "source": "PubMed Central", "url": "#" },
+        { "label": "Deve dikeni ve hepatoprotektif etkiler", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Deve Dikeni Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "enginar",
+      "name": "Enginar",
+      "fullName": "Enginar (Artichoke)",
+      "subtitle": "Sindirim Dostu",
+      "letter": "E",
+      "gradient": "linear-gradient(135deg, #5a8a5a 0%, #7caa7c 40%, #a0c8a0 100%)",
+      "tags": ["Sindirim", "Safra Ak\u0131\u015F\u0131", "Kolesterol Dengesi"],
+      "description": "Enginar ekstresi, safra \u00FCretimini ve ak\u0131\u015F\u0131n\u0131 d\u00FCzenleyerek sindirimi kolayla\u015Ft\u0131r\u0131r. Karaci\u011Fer fonksiyonlar\u0131n\u0131 desteklerken kolesterol dengesine de katk\u0131da bulunur.",
+      "research": [
+        { "label": "Enginar ekstresi ve sindirim sa\u011Fl\u0131\u011F\u0131", "source": "PubMed Central", "url": "#" },
+        { "label": "Cynara scolymus ve lipid metabolizmas\u0131", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Enginar Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "karahindiba",
+      "name": "Karahindiba",
+      "fullName": "Karahindiba (Dandelion)",
+      "subtitle": "Do\u011Fal Ar\u0131nd\u0131r\u0131c\u0131",
+      "letter": "Ka",
+      "gradient": "linear-gradient(135deg, #d4a020 0%, #e8bc48 40%, #f0d478 100%)",
+      "tags": ["Di\u00FCretik", "Karaci\u011Fer Deste\u011Fi", "Antioksidan"],
+      "description": "Karahindiba, do\u011Fal di\u00FCretik \u00F6zellikleri ile v\u00FCcuttaki fazla s\u0131v\u0131n\u0131n at\u0131lmas\u0131na yard\u0131mc\u0131 olur. Karaci\u011Fer ve b\u00F6brek fonksiyonlar\u0131n\u0131 destekleyerek b\u00FCt\u00FCnsel bir ar\u0131nma sa\u011Flar.",
+      "research": [
+        { "label": "Karahindiban\u0131n hepatoprotektif etkileri", "source": "PubMed Central", "url": "#" },
+        { "label": "Taraxacum officinale ve di\u00FCretik aktivite", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Karahindiba Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "zerdecal",
+      "name": "Zerde\u00E7al",
+      "fullName": "Zerde\u00E7al (K\u00FCrk\u00FCmin)",
+      "subtitle": "Alt\u0131n Baharat",
+      "letter": "Z",
+      "gradient": "linear-gradient(135deg, #d4920a 0%, #e8aa30 40%, #f0c460 100%)",
+      "tags": ["Anti-inflamatuar", "Antioksidan", "Sindirim Deste\u011Fi"],
+      "description": "Do\u011Fan\u0131n en g\u00FC\u00E7l\u00FC anti-inflamatuar bile\u015Fenlerinden biri olan k\u00FCrk\u00FCmin, v\u00FCcuttaki iltihab\u0131 azalt\u0131r. G\u00FC\u00E7l\u00FC antioksidan \u00F6zellikleri ile h\u00FCcreleri serbest radikal hasar\u0131ndan korur.",
+      "research": [
+        { "label": "K\u00FCrk\u00FCminin anti-inflamatuar mekanizmalar\u0131", "source": "PubMed Central", "url": "#" },
+        { "label": "Zerde\u00E7al ve sindirim sistemi sa\u011Fl\u0131\u011F\u0131", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Zerde\u00E7al Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "moringa",
+      "name": "Moringa",
+      "fullName": "Moringa",
+      "subtitle": "Mucize A\u011Fac\u0131",
+      "letter": "Mo",
+      "gradient": "linear-gradient(135deg, #4a8a4a 0%, #6aaa6a 40%, #90c890 100%)",
+      "tags": ["Besin Yo\u011Fun", "Enerji", "Ba\u011F\u0131\u015F\u0131kl\u0131k"],
+      "description": "Mucize a\u011Fac\u0131 olarak bilinen moringa, 90'dan fazla besin maddesi i\u00E7erir. Vitamin ve mineral a\u00E7\u0131s\u0131ndan zengin yap\u0131s\u0131yla ba\u011F\u0131\u015F\u0131kl\u0131k sistemini destekler ve do\u011Fal enerji sa\u011Flar.",
+      "research": [
+        { "label": "Moringa oleifera'n\u0131n besin de\u011Feri analizi", "source": "PubMed Central", "url": "#" },
+        { "label": "Moringa ve ba\u011F\u0131\u015F\u0131kl\u0131k sistemi modulasyonu", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Moringa Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    }
+  ]{% endcapture %}
+
+{% when 'thechill' %}
+  {% assign ih_show = true %}
+  {% assign ih_product_name = 'TheChill' %}
+  {% capture ih_ingredients_json %}[
+    {
+      "key": "rhodiola",
+      "name": "Rhodiola",
+      "fullName": "Rhodiola Rosea",
+      "subtitle": "Stres Kalkan\u0131",
+      "letter": "R",
+      "gradient": "linear-gradient(135deg, #8b5e83 0%, #aa7ea2 40%, #c8a0c0 100%)",
+      "tags": ["Adaptojenik", "Stres Y\u00F6netimi", "Zihinsel Denge"],
+      "description": "G\u00FC\u00E7l\u00FC bir adaptojen olan rhodiola, v\u00FCcudun stresle ba\u015Fa \u00E7\u0131kma kapasitesini art\u0131r\u0131r. Kortizol seviyelerini dengeleyerek hem fiziksel hem de zihinsel dayan\u0131kl\u0131l\u0131\u011F\u0131 destekler.",
+      "research": [
+        { "label": "Rhodiola rosea ve stres adaptasyonu", "source": "PubMed Central", "url": "#" },
+        { "label": "Rhodiola'n\u0131n kortizol seviyeleri \u00FCzerindeki etkisi", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Rhodiola Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "passiflora",
+      "name": "Passiflora",
+      "fullName": "Passiflora (\u00C7ark\u0131felek)",
+      "subtitle": "Huzur \u00C7i\u00E7e\u011Fi",
+      "letter": "Pa",
+      "gradient": "linear-gradient(135deg, #7b68ae 0%, #9b8ac8 40%, #bbaee0 100%)",
+      "tags": ["Kayg\u0131 Azaltma", "Uyku Kalitesi", "Rahatlama"],
+      "description": "\u00C7ark\u0131felek \u00E7i\u00E7e\u011Fi olarak da bilinen passiflora, GABA resept\u00F6rleri \u00FCzerindeki etkisiyle do\u011Fal bir sakinle\u015Ftiricidir. Kayg\u0131y\u0131 azaltarak huzurlu bir ruh hali ve kaliteli uyku sa\u011Flar.",
+      "research": [
+        { "label": "Passiflora incarnata ve anksiyolitik etkiler", "source": "PubMed Central", "url": "#" },
+        { "label": "Passifloran\u0131n GABA-erjik mekanizmas\u0131", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Passiflora Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "melisa",
+      "name": "Melisa",
+      "fullName": "Melisa (Melissa Officinalis)",
+      "subtitle": "Sakinle\u015Ftirici Bitki",
+      "letter": "Me",
+      "gradient": "linear-gradient(135deg, #6aaa80 0%, #8ec4a0 40%, #b2dac0 100%)",
+      "tags": ["Sinir Sistemi", "Rahatlama", "Sindirim"],
+      "description": "Melisa, sinir sistemini yat\u0131\u015Ft\u0131rarak kayg\u0131 ve gerginli\u011Fi azalt\u0131r. Hem sindirim sistemini rahatlatm\u0131r hem de g\u00FCn i\u00E7indeki stresin etkilerini hafifletir.",
+      "research": [
+        { "label": "Melissa officinalis ve anksiyete azaltma", "source": "PubMed Central", "url": "#" },
+        { "label": "Melisan\u0131n n\u00F6roprotektif etkileri", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Melisa Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "papatya",
+      "name": "Papatya",
+      "fullName": "Papatya (Chamomile)",
+      "subtitle": "Do\u011Fal Huzur",
+      "letter": "P",
+      "gradient": "linear-gradient(135deg, #d8c44d 0%, #e8d878 40%, #f0e8a0 100%)",
+      "tags": ["Rahatlama", "Anti-inflamatuar", "Uyku Deste\u011Fi"],
+      "description": "Papatyan\u0131n sakinle\u015Ftirici \u00F6zellikleri, stresin yaratt\u0131\u011F\u0131 gerginli\u011Fi azalt\u0131r. \u0130\u00E7erdi\u011Fi apigenin ile sinir sistemini yat\u0131\u015Ft\u0131rarak do\u011Fal bir rahatlama hissi sa\u011Flar.",
+      "research": [
+        { "label": "Apigenin ve sinir sistemi \u00FCzerindeki etkileri", "source": "PubMed Central", "url": "#" },
+        { "label": "Papatya \u00E7ay\u0131 ve stres azaltma", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Papatya Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    },
+    {
+      "key": "b6b12",
+      "name": "Vitamin B6 & B12",
+      "fullName": "Vitamin B6 & B12",
+      "subtitle": "Sinir Sistemi Deste\u011Fi",
+      "letter": "B",
+      "gradient": "linear-gradient(135deg, #d45c7e 0%, #e8829e 40%, #f0a8be 100%)",
+      "tags": ["Sinir Sistemi", "Enerji", "Ruh Hali"],
+      "description": "B6 ve B12 vitaminleri, serotonin ve dopamin \u00FCretimini destekleyerek ruh halinizi dengeler. Sinir sisteminin sa\u011Fl\u0131kl\u0131 i\u015Fleyi\u015Fine katk\u0131da bulunarak stresin etkilerini azalt\u0131r.",
+      "research": [
+        { "label": "B vitaminleri ve n\u00F6rotransmitter sentezi", "source": "PubMed Central", "url": "#" },
+        { "label": "B6 vitamini ve ruh hali d\u00FCzenleme", "source": "PubMed Central", "url": "#" }
+      ],
+      "cert": { "label": "Vitamin B6 & B12 Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
+    }
+  ]{% endcapture %}
+
+{% endcase %}
+
+{% if ih_show %}
+
+<section class="ih-section" aria-label="İçerik Keşfi">
+  <div class="ih-container">
+
+    <header class="ih-header">
+      <span class="ih-eyebrow">{{ ih_product_name }}</span>
+      <h2 class="ih-title">İçeriklerimizi Keşfet</h2>
+      <p class="ih-subtitle-text">Her bir bileşenin ardındaki bilimi ve faydaları keşfedin</p>
+    </header>
+
+    <div class="ih-layout">
+
+      <!-- Sidebar: Desktop only -->
+      <nav class="ih-sidebar" role="tablist" aria-label="Bileşenler" id="ih-sidebar-tabs"></nav>
+
+      <!-- Pill grid: Mobile only -->
+      <div class="ih-pill-grid" role="tablist" aria-label="Bileşenler" id="ih-pill-tabs"></div>
+
+      <!-- Detail panel -->
+      <div class="ih-detail-wrapper" id="ih-detail-wrapper"></div>
+    </div>
+
+    <!-- Swipe hint (Mobile) -->
+    <div class="ih-swipe-hint" id="ih-swipe-hint" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+      <span>Kaydırarak keşfet</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- Overlay -->
+<div class="ih-overlay" id="ih-overlay" aria-hidden="true"></div>
+
+<!-- Modal -->
+<div class="ih-modal" id="ih-modal" role="dialog" aria-modal="true" aria-labelledby="ih-modal-title">
+  <div class="ih-modal-drag-bar" id="ih-modal-drag-bar"></div>
+  <div class="ih-modal-header">
+    <div>
+      <div class="ih-modal-title" id="ih-modal-title">Araştırma ve Sertifikalar</div>
+      <div class="ih-modal-ingredient" id="ih-modal-ingredient"></div>
+    </div>
+    <button class="ih-modal-close" id="ih-modal-close" aria-label="Kapat">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="ih-modal-body" id="ih-modal-body"></div>
+</div>
+
+<!-- Ingredient data -->
+<script type="application/json" id="ih-data">{{ ih_ingredients_json }}</script>
+
+<style>
+  /* === RESET (scoped) === */
+  .ih-section *, .ih-section *::before, .ih-section *::after,
+  .ih-modal *, .ih-modal *::before, .ih-modal *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  /* === TOKENS === */
+  .ih-section, .ih-overlay, .ih-modal {
+    --ih-bg: #faf9f7;
+    --ih-bg-pure: #ffffff;
+    --ih-text: #2a2a2a;
+    --ih-text-light: #6b6560;
+    --ih-text-muted: #9a938d;
+    --ih-accent: #2a2a2a;
+    --ih-accent-text: #ffffff;
+    --ih-accent-warm: #c4a882;
+    --ih-accent-gold: #b8976a;
+    --ih-border: #e0dbd5;
+    --ih-radius-pill: 30px;
+    --ih-radius-modal-mobile: 20px 20px 0 0;
+    --ih-radius-modal-desktop: 16px;
+    --ih-radius-card: 12px;
+    --ih-transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    --ih-transition-fast: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    --ih-tag-bg: #2a2a2a;
+    --ih-tag-text: #ffffff;
+    --ih-tag-radius: 20px;
+    --ih-font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --ih-font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --ih-shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --ih-shadow-md: 0 4px 20px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+    --ih-shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+    --ih-shadow-modal: 0 -8px 40px rgba(0,0,0,0.12);
+  }
+
+  /* === SECTION === */
+  .ih-section {
+    background: var(--ih-bg);
+    font-family: var(--ih-font-body);
+    color: var(--ih-text);
+    padding: 48px 0 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ih-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--ih-border) 20%, var(--ih-border) 80%, transparent 100%);
+  }
+  .ih-container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* === HEADER === */
+  .ih-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .ih-eyebrow {
+    font-family: var(--ih-font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ih-accent-gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .ih-title {
+    font-family: var(--ih-font-display);
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--ih-text);
+    line-height: 1.15;
+  }
+  .ih-subtitle-text {
+    font-family: var(--ih-font-body);
+    font-size: 14px;
+    color: var(--ih-text-light);
+    margin-top: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* === LAYOUT === */
+  .ih-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* === PILL GRID (Mobile — wrapping, all visible) === */
+  .ih-pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+  .ih-pill-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    min-height: 44px;
+    border: 1.5px solid var(--ih-border);
+    border-radius: var(--ih-radius-pill);
+    background: var(--ih-bg-pure);
+    color: var(--ih-text);
+    font-family: var(--ih-font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--ih-transition);
+    white-space: nowrap;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .ih-pill-btn:hover {
+    border-color: var(--ih-text-muted);
+    background: #f5f2ee;
+  }
+  .ih-pill-btn:focus-visible {
+    box-shadow: 0 0 0 2px var(--ih-bg), 0 0 0 4px var(--ih-accent-warm);
+  }
+  .ih-pill-btn[aria-selected="true"] {
+    background: var(--ih-accent);
+    border-color: var(--ih-accent);
+    color: var(--ih-accent-text);
+    box-shadow: var(--ih-shadow-sm);
+  }
+  .ih-pill-btn[aria-selected="true"] .ih-pill-dot {
+    background: var(--ih-accent-warm);
+  }
+  .ih-pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ih-accent-gold);
+    flex-shrink: 0;
+    transition: background var(--ih-transition);
+  }
+
+  /* === SIDEBAR (Desktop only) === */
+  .ih-sidebar {
+    display: none;
+  }
+
+  /* === DETAIL PANEL === */
+  .ih-detail-wrapper {
+    position: relative;
+    min-height: 380px;
+    touch-action: pan-y;
+  }
+  .ih-detail {
+    display: none;
+    opacity: 0;
+    transform: translateY(12px);
+    padding: 8px 0 0;
+  }
+  .ih-detail.ih-active {
+    display: block;
+    animation: ih-fadeSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes ih-fadeSlideIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ih-fadeSlideOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-8px); }
+  }
+  .ih-detail-inner {
+    text-align: center;
+  }
+
+  /* === IMAGE === */
+  .ih-image-container {
+    margin: 0 auto 24px;
+    position: relative;
+  }
+  .ih-image {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(180,160,130,0.15);
+  }
+  .ih-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.5);
+    pointer-events: none;
+  }
+  .ih-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+  .ih-image-letter {
+    font-family: var(--ih-font-display);
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.02em;
+  }
+  .ih-image-ring {
+    position: absolute;
+    width: 156px;
+    height: 156px;
+    border-radius: 50%;
+    border: 1px solid var(--ih-border);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+  }
+
+  /* === META === */
+  .ih-ingredient-name {
+    font-family: var(--ih-font-display);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ih-text);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .ih-ingredient-subtitle {
+    font-family: var(--ih-font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ih-accent-gold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* === TAGS === */
+  .ih-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .ih-tag {
+    display: inline-block;
+    padding: 5px 14px;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border-radius: var(--ih-tag-radius);
+    background: var(--ih-tag-bg);
+    color: var(--ih-tag-text);
+    line-height: 1.4;
+  }
+
+  /* === DESCRIPTION === */
+  .ih-description {
+    font-family: var(--ih-font-body);
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ih-text-light);
+    max-width: 480px;
+    margin: 0 auto 24px;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  /* === RESEARCH TRIGGER === */
+  .ih-research-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--ih-font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ih-text);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: var(--ih-radius-pill);
+    border: 1.5px solid var(--ih-border);
+    background: var(--ih-bg-pure);
+    transition: all var(--ih-transition);
+    letter-spacing: 0.01em;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ih-research-trigger:hover {
+    border-color: var(--ih-accent);
+    background: var(--ih-accent);
+    color: var(--ih-accent-text);
+  }
+  .ih-research-trigger:hover .ih-research-icon {
+    transform: translateX(2px);
+  }
+  .ih-research-trigger:hover .ih-research-icon svg path {
+    stroke: var(--ih-accent-text);
+  }
+  .ih-research-icon {
+    display: flex;
+    transition: transform var(--ih-transition-fast);
+  }
+  .ih-research-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+  .ih-research-icon svg path {
+    stroke: var(--ih-text);
+    transition: stroke var(--ih-transition);
+  }
+
+  /* === SWIPE HINT === */
+  .ih-swipe-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 24px;
+    font-size: 11px;
+    color: var(--ih-text-muted);
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+  }
+  .ih-swipe-hint svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* === OVERLAY === */
+  .ih-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20,18,15,0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .ih-overlay.ih-overlay-visible {
+    opacity: 1;
+  }
+
+  /* === MODAL (Mobile: Bottom Sheet) === */
+  .ih-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    bottom: 0; left: 0; right: 0;
+    background: var(--ih-bg-pure);
+    border-radius: var(--ih-radius-modal-mobile);
+    padding: 0;
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: var(--ih-shadow-modal);
+    overscroll-behavior: contain;
+    font-family: var(--ih-font-body);
+    color: var(--ih-text);
+  }
+  .ih-modal.ih-modal-visible {
+    transform: translateY(0);
+  }
+  .ih-modal-drag-bar {
+    width: 36px;
+    height: 4px;
+    background: var(--ih-border);
+    border-radius: 2px;
+    margin: 12px auto 0;
+    cursor: grab;
+  }
+  .ih-modal-header {
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--ih-bg-pure);
+    z-index: 1;
+  }
+  .ih-modal-title {
+    font-family: var(--ih-font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ih-text);
+    letter-spacing: -0.01em;
+  }
+  .ih-modal-ingredient {
+    font-family: var(--ih-font-body);
+    font-size: 12px;
+    color: var(--ih-text-muted);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+  .ih-modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--ih-border);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--ih-transition-fast);
+    margin-left: 12px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ih-modal-close:hover {
+    background: var(--ih-accent);
+    border-color: var(--ih-accent);
+  }
+  .ih-modal-close:hover svg path {
+    stroke: var(--ih-accent-text);
+  }
+  .ih-modal-close svg {
+    width: 14px;
+    height: 14px;
+  }
+  .ih-modal-close svg path {
+    stroke: var(--ih-text);
+    stroke-width: 2;
+    transition: stroke var(--ih-transition-fast);
+  }
+  .ih-modal-body {
+    padding: 24px;
+  }
+  .ih-modal-section-title {
+    font-family: var(--ih-font-body);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ih-text-muted);
+    margin-bottom: 14px;
+  }
+  .ih-modal-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .ih-modal-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--ih-bg);
+    border: 1px solid var(--ih-border);
+    border-radius: var(--ih-radius-card);
+    text-decoration: none;
+    color: var(--ih-text);
+    transition: all var(--ih-transition-fast);
+  }
+  .ih-modal-link:hover {
+    border-color: var(--ih-accent-warm);
+    box-shadow: var(--ih-shadow-sm);
+    transform: translateY(-1px);
+  }
+  .ih-modal-link-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ih-modal-link-icon.ih-icon-research {
+    background: linear-gradient(135deg, #e8f4ec 0%, #d5eadc 100%);
+  }
+  .ih-modal-link-icon.ih-icon-cert {
+    background: linear-gradient(135deg, #fef3e2 0%, #fce8c8 100%);
+  }
+  .ih-modal-link-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  .ih-modal-link-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .ih-modal-link-label {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ih-text);
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .ih-modal-link-source {
+    font-size: 11.5px;
+    color: var(--ih-text-muted);
+    margin-top: 2px;
+  }
+  .ih-modal-link-arrow {
+    flex-shrink: 0;
+    opacity: 0.3;
+    transition: opacity var(--ih-transition-fast);
+  }
+  .ih-modal-link:hover .ih-modal-link-arrow {
+    opacity: 0.7;
+  }
+  .ih-modal-link-arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* === DESKTOP (>= 768px) === */
+  @media (min-width: 768px) {
+    .ih-section {
+      padding: 64px 0 72px;
+    }
+    .ih-header {
+      margin-bottom: 44px;
+    }
+    .ih-title {
+      font-size: 40px;
+    }
+    .ih-subtitle-text {
+      font-size: 15px;
+    }
+    .ih-layout {
+      flex-direction: row;
+      gap: 0;
+    }
+    .ih-pill-grid {
+      display: none;
+    }
+    .ih-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 240px;
+      flex-shrink: 0;
+      padding-right: 32px;
+      border-right: 1px solid var(--ih-border);
+    }
+    .ih-sidebar-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--ih-text-light);
+      font-family: var(--ih-font-body);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--ih-transition);
+      text-align: left;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .ih-sidebar-btn:hover {
+      background: rgba(0,0,0,0.03);
+      color: var(--ih-text);
+    }
+    .ih-sidebar-btn:focus-visible {
+      box-shadow: 0 0 0 2px var(--ih-bg), 0 0 0 4px var(--ih-accent-warm);
+    }
+    .ih-sidebar-btn[aria-selected="true"] {
+      background: var(--ih-accent);
+      color: var(--ih-accent-text);
+      box-shadow: var(--ih-shadow-sm);
+    }
+    .ih-sidebar-btn[aria-selected="true"] .ih-sidebar-dot {
+      background: var(--ih-accent-warm);
+    }
+    .ih-sidebar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ih-accent-gold);
+      flex-shrink: 0;
+      transition: background var(--ih-transition);
+    }
+    .ih-sidebar-label {
+      line-height: 1.3;
+    }
+    .ih-detail-wrapper {
+      flex: 1;
+      padding-left: 40px;
+      min-height: 360px;
+    }
+    .ih-detail-inner {
+      text-align: left;
+    }
+    .ih-image-container {
+      margin: 0 0 28px;
+    }
+    .ih-image {
+      width: 120px;
+      height: 120px;
+      margin: 0;
+    }
+    .ih-image-ring {
+      width: 136px;
+      height: 136px;
+    }
+    .ih-image-letter {
+      font-size: 42px;
+    }
+    .ih-ingredient-name {
+      font-size: 30px;
+    }
+    .ih-tags {
+      justify-content: flex-start;
+    }
+    .ih-description {
+      text-align: left;
+      margin: 0 0 28px;
+      max-width: 520px;
+      font-size: 15px;
+    }
+    .ih-swipe-hint {
+      display: none;
+    }
+    /* Desktop modal: centered */
+    .ih-modal {
+      bottom: auto;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.96);
+      border-radius: var(--ih-radius-modal-desktop);
+      width: 90%;
+      max-width: 520px;
+      max-height: 70vh;
+      box-shadow: var(--ih-shadow-lg);
+    }
+    .ih-modal.ih-modal-visible {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .ih-modal-drag-bar {
+      display: none;
+    }
+  }
+
+  /* === LARGE DESKTOP (>= 1024px) === */
+  @media (min-width: 1024px) {
+    .ih-title {
+      font-size: 44px;
+    }
+    .ih-sidebar {
+      width: 260px;
+      padding-right: 40px;
+    }
+    .ih-detail-wrapper {
+      padding-left: 48px;
+    }
+  }
+
+  /* === SMALL MOBILE (< 380px) === */
+  @media (max-width: 379px) {
+    .ih-title {
+      font-size: 28px;
+    }
+    .ih-pill-btn {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+    .ih-image {
+      width: 120px;
+      height: 120px;
+    }
+    .ih-image-ring {
+      width: 136px;
+      height: 136px;
+    }
+    .ih-image-letter {
+      font-size: 40px;
+    }
+    .ih-ingredient-name {
+      font-size: 22px;
+    }
+  }
+
+  /* === REDUCED MOTION === */
+  @media (prefers-reduced-motion: reduce) {
+    .ih-section *, .ih-section *::before, .ih-section *::after,
+    .ih-modal *, .ih-overlay {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* === SR ONLY === */
+  .ih-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+  }
+</style>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── Data ── */
+  var dataEl = document.getElementById('ih-data');
+  if (!dataEl) return;
+  var ingredients;
+  try { ingredients = JSON.parse(dataEl.textContent); } catch(e) { return; }
+  if (!ingredients || !ingredients.length) return;
+
+  /* ── DOM ── */
+  var pillGrid    = document.getElementById('ih-pill-tabs');
+  var sidebarNav  = document.getElementById('ih-sidebar-tabs');
+  var detailWrap  = document.getElementById('ih-detail-wrapper');
+  var overlay     = document.getElementById('ih-overlay');
+  var modal       = document.getElementById('ih-modal');
+  var modalBody   = document.getElementById('ih-modal-body');
+  var modalIng    = document.getElementById('ih-modal-ingredient');
+  var modalClose  = document.getElementById('ih-modal-close');
+  var modalDrag   = document.getElementById('ih-modal-drag-bar');
+  var swipeHint   = document.getElementById('ih-swipe-hint');
+
+  var activeIdx   = 0;
+  var animating   = false;
+
+  /* ── SVGs ── */
+  var svgChevron  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+  var svgExternal = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+  var svgResearch = '<svg viewBox="0 0 24 24" fill="none" stroke="#3a7d5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>';
+  var svgCert     = '<svg viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l-2 5l2-1l2 1l-2-5z"/><circle cx="12" cy="9" r="6"/><path d="M9 9l1.5 1.5L15 7"/></svg>';
+
+  /* ── Build pill grid ── */
+  ingredients.forEach(function(ing, i) {
+    var btn = document.createElement('button');
+    btn.className = 'ih-pill-btn';
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    btn.setAttribute('aria-controls', 'ih-panel-' + ing.key);
+    btn.setAttribute('id', 'ih-tab-pill-' + ing.key);
+    btn.setAttribute('tabindex', i === 0 ? '0' : '-1');
+    btn.dataset.index = i;
+    btn.innerHTML = '<span class="ih-pill-dot"></span>' + ing.name;
+    pillGrid.appendChild(btn);
+  });
+
+  /* ── Build sidebar ── */
+  ingredients.forEach(function(ing, i) {
+    var btn = document.createElement('button');
+    btn.className = 'ih-sidebar-btn';
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    btn.setAttribute('aria-controls', 'ih-panel-' + ing.key);
+    btn.setAttribute('id', 'ih-tab-side-' + ing.key);
+    btn.setAttribute('tabindex', i === 0 ? '0' : '-1');
+    btn.dataset.index = i;
+    btn.innerHTML = '<span class="ih-sidebar-dot"></span><span class="ih-sidebar-label">' + ing.name + '</span>';
+    sidebarNav.appendChild(btn);
+  });
+
+  /* ── Build detail panels ── */
+  ingredients.forEach(function(ing, i) {
+    var panel = document.createElement('div');
+    panel.className = 'ih-detail' + (i === 0 ? ' ih-active' : '');
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('id', 'ih-panel-' + ing.key);
+    panel.setAttribute('aria-labelledby', 'ih-tab-pill-' + ing.key);
+    panel.dataset.index = i;
+
+    var tags = ing.tags.map(function(t) { return '<span class="ih-tag">' + t + '</span>'; }).join('');
+
+    panel.innerHTML =
+      '<div class="ih-detail-inner">' +
+        '<div class="ih-image-container">' +
+          '<div class="ih-image-ring"></div>' +
+          '<div class="ih-image" style="background:' + ing.gradient + '">' +
+            '<span class="ih-image-letter">' + ing.letter + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<h3 class="ih-ingredient-name">' + ing.fullName + '</h3>' +
+        '<div class="ih-ingredient-subtitle">' + ing.subtitle + '</div>' +
+        '<div class="ih-tags">' + tags + '</div>' +
+        '<p class="ih-description">' + ing.description + '</p>' +
+        '<button class="ih-research-trigger" data-ingredient="' + ing.key + '" aria-haspopup="dialog">' +
+          'Araştırma ve Sertifikalar' +
+          '<span class="ih-research-icon">' + svgChevron + '</span>' +
+        '</button>' +
+      '</div>';
+
+    detailWrap.appendChild(panel);
+  });
+
+  /* ── Select ingredient ── */
+  function select(idx, anim) {
+    if (idx < 0 || idx >= ingredients.length || animating) return;
+    var prev = activeIdx;
+    activeIdx = idx;
+
+    /* Update pills */
+    var pills = pillGrid.querySelectorAll('.ih-pill-btn');
+    pills.forEach(function(p, i) {
+      p.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      p.setAttribute('tabindex', i === idx ? '0' : '-1');
+    });
+
+    /* Update sidebar */
+    var sides = sidebarNav.querySelectorAll('.ih-sidebar-btn');
+    sides.forEach(function(b, i) {
+      b.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      b.setAttribute('tabindex', i === idx ? '0' : '-1');
+    });
+
+    /* Animate panels */
+    var panels = detailWrap.querySelectorAll('.ih-detail');
+    if (anim && prev !== idx) {
+      animating = true;
+      var old = panels[prev], nw = panels[idx];
+      if (old) {
+        old.style.animation = 'ih-fadeSlideOut 0.2s ease forwards';
+        setTimeout(function() {
+          old.classList.remove('ih-active');
+          old.style.display = 'none';
+          old.style.animation = '';
+          nw.style.display = 'block';
+          nw.classList.add('ih-active');
+          nw.style.animation = 'ih-fadeSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) forwards';
+          setTimeout(function() { nw.style.animation = ''; animating = false; }, 400);
+        }, 200);
+      }
+    } else {
+      panels.forEach(function(p, i) {
+        if (i === idx) {
+          p.style.display = 'block';
+          p.classList.add('ih-active');
+          p.style.opacity = '1';
+          p.style.transform = 'translateY(0)';
+        } else {
+          p.style.display = 'none';
+          p.classList.remove('ih-active');
+        }
+      });
+    }
+
+    /* Hide swipe hint after first interaction */
+    if (swipeHint && prev !== idx) {
+      swipeHint.style.transition = 'opacity 0.5s ease';
+      swipeHint.style.opacity = '0';
+      setTimeout(function() { swipeHint.style.display = 'none'; }, 500);
+    }
+  }
+
+  /* ── Tab clicks ── */
+  function onTab(e) {
+    var btn = e.target.closest('[role="tab"]');
+    if (!btn) return;
+    select(parseInt(btn.dataset.index, 10), true);
+  }
+  pillGrid.addEventListener('click', onTab);
+  sidebarNav.addEventListener('click', onTab);
+
+  /* ── Keyboard navigation ── */
+  function onKey(e) {
+    var btn = e.target.closest('[role="tab"]');
+    if (!btn) return;
+    var i = parseInt(btn.dataset.index, 10), max = ingredients.length - 1;
+    var next = -1;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { next = i < max ? i + 1 : 0; }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { next = i > 0 ? i - 1 : max; }
+    else if (e.key === 'Home') { next = 0; }
+    else if (e.key === 'End') { next = max; }
+    if (next < 0) return;
+    e.preventDefault();
+    select(next, true);
+    var isDesk = window.matchMedia('(min-width:768px)').matches;
+    var tabs = isDesk ? sidebarNav.querySelectorAll('.ih-sidebar-btn') : pillGrid.querySelectorAll('.ih-pill-btn');
+    if (tabs[next]) tabs[next].focus();
+  }
+  pillGrid.addEventListener('keydown', onKey);
+  sidebarNav.addEventListener('keydown', onKey);
+
+  /* ── Swipe on detail area ── */
+  var sx = 0, sy = 0, dx = 0, swiping = false;
+  detailWrap.addEventListener('touchstart', function(e) {
+    sx = e.changedTouches[0].clientX;
+    sy = e.changedTouches[0].clientY;
+    dx = 0; swiping = true;
+  }, { passive: true });
+  detailWrap.addEventListener('touchmove', function(e) {
+    if (!swiping) return;
+    var mx = e.changedTouches[0].clientX - sx;
+    var my = e.changedTouches[0].clientY - sy;
+    if (Math.abs(my) > Math.abs(mx) * 1.2) { swiping = false; return; }
+    dx = mx;
+  }, { passive: true });
+  detailWrap.addEventListener('touchend', function() {
+    if (!swiping) return;
+    swiping = false;
+    if (dx < -50 && activeIdx < ingredients.length - 1) select(activeIdx + 1, true);
+    else if (dx > 50 && activeIdx > 0) select(activeIdx - 1, true);
+  }, { passive: true });
+
+  /* ── Modal open ── */
+  function openModal(key) {
+    var ing = null;
+    for (var i = 0; i < ingredients.length; i++) { if (ingredients[i].key === key) { ing = ingredients[i]; break; } }
+    if (!ing) return;
+    modalIng.textContent = ing.fullName;
+
+    var html = '<div class="ih-modal-section-title">Bilimsel Araştırmalar</div><div class="ih-modal-links">';
+    ing.research.forEach(function(r) {
+      if (!r.url || r.url === '#') return;
+      html +=
+        '<a href="' + r.url + '" target="_blank" rel="noopener noreferrer" class="ih-modal-link">' +
+          '<div class="ih-modal-link-icon ih-icon-research">' + svgResearch + '</div>' +
+          '<div class="ih-modal-link-text"><div class="ih-modal-link-label">' + r.label + '</div><div class="ih-modal-link-source">' + r.source + '</div></div>' +
+          '<span class="ih-modal-link-arrow">' + svgExternal + '</span></a>';
+    });
+    /* If all research urls are # show a placeholder message */
+    var hasResearch = ing.research.some(function(r) { return r.url && r.url !== '#'; });
+    if (!hasResearch) {
+      html += '<div style="font-size:13px;color:var(--ih-text-muted);padding:8px 0">Araştırma linkleri yakında eklenecektir.</div>';
+    }
+    html += '</div>';
+
+    html += '<div class="ih-modal-section-title">Sertifikalar</div><div class="ih-modal-links">';
+    if (ing.cert && ing.cert.url && ing.cert.url !== '#') {
+      html +=
+        '<a href="' + ing.cert.url + '" target="_blank" rel="noopener noreferrer" class="ih-modal-link">' +
+          '<div class="ih-modal-link-icon ih-icon-cert">' + svgCert + '</div>' +
+          '<div class="ih-modal-link-text"><div class="ih-modal-link-label">' + ing.cert.label + '</div><div class="ih-modal-link-source">' + ing.cert.source + '</div></div>' +
+          '<span class="ih-modal-link-arrow">' + svgExternal + '</span></a>';
+    } else {
+      html += '<div style="font-size:13px;color:var(--ih-text-muted);padding:8px 0">Sertifika linkleri yakında eklenecektir.</div>';
+    }
+    html += '</div>';
+
+    modalBody.innerHTML = html;
+    overlay.style.display = 'block';
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function() {
+      overlay.classList.add('ih-overlay-visible');
+      modal.classList.add('ih-modal-visible');
+    });
+    modalClose.focus();
+  }
+
+  /* ── Modal close ── */
+  function closeModal() {
+    overlay.classList.remove('ih-overlay-visible');
+    modal.classList.remove('ih-modal-visible');
+    setTimeout(function() {
+      overlay.style.display = 'none';
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      modalBody.innerHTML = '';
+    }, 350);
+    var trigger = detailWrap.querySelector('.ih-detail.ih-active .ih-research-trigger');
+    if (trigger) trigger.focus();
+  }
+
+  detailWrap.addEventListener('click', function(e) {
+    var t = e.target.closest('.ih-research-trigger');
+    if (t) { e.preventDefault(); openModal(t.dataset.ingredient); }
+  });
+  modalClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') closeModal();
+  });
+
+  /* ── Focus trap ── */
+  modal.addEventListener('keydown', function(e) {
+    if (e.key !== 'Tab') return;
+    var els = modal.querySelectorAll('a[href],button,[tabindex]:not([tabindex="-1"])');
+    if (!els.length) return;
+    var first = els[0], last = els[els.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* ── Drag-to-dismiss (mobile) ── */
+  var dsy = 0, dcy = 0, dragging = false;
+  modalDrag.addEventListener('touchstart', function(e) {
+    dsy = e.changedTouches[0].clientY;
+    dragging = true;
+    modal.style.transition = 'none';
+  }, { passive: true });
+  document.addEventListener('touchmove', function(e) {
+    if (!dragging) return;
+    dcy = e.changedTouches[0].clientY;
+    var d = Math.max(0, dcy - dsy);
+    var desk = window.matchMedia('(min-width:768px)').matches;
+    modal.style.transform = desk ? 'translate(-50%,-50%) translateY(' + d + 'px)' : 'translateY(' + d + 'px)';
+  }, { passive: true });
+  document.addEventListener('touchend', function() {
+    if (!dragging) return;
+    dragging = false;
+    modal.style.transition = '';
+    if (dcy - dsy > 100) { closeModal(); }
+    else { modal.style.transform = ''; }
+  }, { passive: true });
+
+  /* ── Init ── */
+  select(0, false);
+
+})();
+</script>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Ingredient Hub",
+  "tag": "section",
+  "class": "ingredient-hub-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "İçeriklerimizi Keşfet"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Her bir bileşenin ardındaki bilimi ve faydaları keşfedin"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredient Hub",
+      "category": "Product Information"
+    }
+  ]
+}
+{% endschema %}
