@@ -34,6 +34,9 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
     </div>
 
+    <!-- Page dots (Mobile) -->
+    <div class="ih-page-dots" id="ih-page-dots" aria-hidden="true"></div>
+
   </div>
 </section>
 
@@ -485,6 +488,28 @@
     50% { transform: translateX(5px); opacity: 1; }
   }
 
+  /* === PAGE DOTS (Mobile) === */
+  .ih-page-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .ih-page-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ih-border);
+    transition: all var(--ih-transition);
+    cursor: pointer;
+  }
+  .ih-page-dot.ih-dot-active {
+    width: 10px;
+    height: 10px;
+    background: var(--ih-accent-gold);
+  }
+
   /* === OVERLAY === */
   .ih-overlay {
     display: none;
@@ -787,6 +812,9 @@
     .ih-swipe-hint {
       display: none;
     }
+    .ih-page-dots {
+      display: none;
+    }
     /* Desktop modal: centered */
     .ih-modal {
       bottom: auto;
@@ -909,6 +937,7 @@
   var modalClose  = document.getElementById('ih-modal-close');
   var modalDrag   = document.getElementById('ih-modal-drag-bar');
   var swipeHint   = document.getElementById('ih-swipe-hint');
+  var pageDots    = document.getElementById('ih-page-dots');
 
   var activeIdx   = 0;
   var animating   = false;
@@ -945,6 +974,15 @@
     btn.dataset.index = i;
     btn.innerHTML = '<span class="ih-sidebar-dot"></span><span class="ih-sidebar-label">' + ing.name + '</span>';
     sidebarNav.appendChild(btn);
+  });
+
+  /* ── Build page dots ── */
+  ingredients.forEach(function(ing, i) {
+    var dot = document.createElement('span');
+    dot.className = 'ih-page-dot' + (i === 0 ? ' ih-dot-active' : '');
+    dot.dataset.index = i;
+    dot.addEventListener('click', function() { select(i, true); });
+    pageDots.appendChild(dot);
   });
 
   /* ── Build detail panels ── */
@@ -1006,6 +1044,13 @@
     sides.forEach(function(b, i) {
       b.setAttribute('aria-selected', i === idx ? 'true' : 'false');
       b.setAttribute('tabindex', i === idx ? '0' : '-1');
+    });
+
+    /* Update page dots */
+    var dots = pageDots.querySelectorAll('.ih-page-dot');
+    dots.forEach(function(d, i) {
+      if (i === idx) { d.classList.add('ih-dot-active'); }
+      else { d.classList.remove('ih-dot-active'); }
     });
 
     /* Animate panels */
