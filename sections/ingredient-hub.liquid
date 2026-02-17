@@ -75,7 +75,8 @@
           {%- assign ih_tag_sep = '' -%}
           {%- if block.settings.tag_1 != blank -%}{{ ih_tag_sep }}{{ block.settings.tag_1 | json }}{%- assign ih_tag_sep = ',' -%}{%- endif -%}
           {%- if block.settings.tag_2 != blank -%}{{ ih_tag_sep }}{{ block.settings.tag_2 | json }}{%- assign ih_tag_sep = ',' -%}{%- endif -%}
-          {%- if block.settings.tag_3 != blank -%}{{ ih_tag_sep }}{{ block.settings.tag_3 | json }}{%- endif -%}
+          {%- if block.settings.tag_3 != blank -%}{{ ih_tag_sep }}{{ block.settings.tag_3 | json }}{%- assign ih_tag_sep = ',' -%}{%- endif -%}
+          {%- if block.settings.tag_4 != blank -%}{{ ih_tag_sep }}{{ block.settings.tag_4 | json }}{%- endif -%}
         ],
         "description": {{ block.settings.description | default: "" | json }},
         "research": [
@@ -86,6 +87,14 @@
           {%- endif -%}
           {%- if block.settings.research_2_label != blank -%}
             {{ ih_res_sep }}{ "label": {{ block.settings.research_2_label | json }}, "source": {{ block.settings.research_2_source | default: "" | json }}, "url": {{ block.settings.research_2_url | default: "#" | json }} }
+            {%- assign ih_res_sep = ',' -%}
+          {%- endif -%}
+          {%- if block.settings.research_3_label != blank -%}
+            {{ ih_res_sep }}{ "label": {{ block.settings.research_3_label | json }}, "source": {{ block.settings.research_3_source | default: "" | json }}, "url": {{ block.settings.research_3_url | default: "#" | json }} }
+            {%- assign ih_res_sep = ',' -%}
+          {%- endif -%}
+          {%- if block.settings.research_4_label != blank -%}
+            {{ ih_res_sep }}{ "label": {{ block.settings.research_4_label | json }}, "source": {{ block.settings.research_4_source | default: "" | json }}, "url": {{ block.settings.research_4_url | default: "#" | json }} }
           {%- endif -%}
         ],
         "cert": { "label": {{ block.settings.cert_label | default: "" | json }}, "source": "Sertifika", "url": {{ block.settings.cert_url | default: "#" | json }} }
@@ -161,10 +170,9 @@
   }
   .ih-eyebrow {
     font-family: var(--ih-font-body);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     color: var(--ih-accent-gold);
     margin-bottom: 12px;
     display: block;
@@ -446,6 +454,20 @@
   .ih-swipe-hint svg {
     width: 16px;
     height: 16px;
+  }
+  .ih-swipe-hint svg:first-child {
+    animation: ih-nudgeLeft 2s ease-in-out infinite;
+  }
+  .ih-swipe-hint svg:last-child {
+    animation: ih-nudgeRight 2s ease-in-out infinite;
+  }
+  @keyframes ih-nudgeLeft {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(-5px); opacity: 1; }
+  }
+  @keyframes ih-nudgeRight {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(5px); opacity: 1; }
   }
 
   /* === OVERLAY === */
@@ -1267,6 +1289,11 @@
           "label": "Etiket 3"
         },
         {
+          "type": "text",
+          "id": "tag_4",
+          "label": "Etiket 4"
+        },
+        {
           "type": "header",
           "content": "Araştırma Linki 1"
         },
@@ -1303,6 +1330,44 @@
         {
           "type": "text",
           "id": "research_2_source",
+          "label": "Kaynak adı"
+        },
+        {
+          "type": "header",
+          "content": "Araştırma Linki 3"
+        },
+        {
+          "type": "text",
+          "id": "research_3_label",
+          "label": "Başlık"
+        },
+        {
+          "type": "url",
+          "id": "research_3_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "research_3_source",
+          "label": "Kaynak adı"
+        },
+        {
+          "type": "header",
+          "content": "Araştırma Linki 4"
+        },
+        {
+          "type": "text",
+          "id": "research_4_label",
+          "label": "Başlık"
+        },
+        {
+          "type": "url",
+          "id": "research_4_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "research_4_source",
           "label": "Kaynak adı"
         },
         {
