@@ -67,6 +67,7 @@
         "name": {{ block.settings.name | default: "İçerik" | json }},
         "fullName": {{ block.settings.full_name | default: block.settings.name | default: "İçerik" | json }},
         "subtitle": {{ block.settings.subtitle | default: "" | json }},
+        "dosage": {{ block.settings.dosage | default: "" | json }},
         "letter": {{ block.settings.circle_letter | default: "?" | json }},
         "circleColor": {{ block.settings.circle_color | json }},
         "imageUrl": {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 300 | json }}{%- else -%}null{%- endif -%},
@@ -132,8 +133,8 @@
     --ih-tag-bg: #2a2a2a;
     --ih-tag-text: #ffffff;
     --ih-tag-radius: 20px;
-    --ih-font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    --ih-font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --ih-font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --ih-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --ih-shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
     --ih-shadow-md: 0 4px 20px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
     --ih-shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
@@ -170,10 +171,10 @@
   .ih-title {
     font-family: var(--ih-font-display);
     font-size: 32px;
-    font-weight: 300;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.03em;
     color: var(--ih-text);
-    line-height: 1.15;
+    line-height: 1;
   }
   .ih-subtitle-text {
     font-family: var(--ih-font-body);
@@ -181,7 +182,7 @@
     color: var(--ih-text-light);
     margin-top: 10px;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.2;
   }
 
   /* === LAYOUT === */
@@ -315,7 +316,7 @@
   .ih-image-letter {
     font-family: var(--ih-font-display);
     font-size: 48px;
-    font-weight: 300;
+    font-weight: 600;
     color: rgba(255,255,255,0.9);
     text-shadow: 0 1px 4px rgba(0,0,0,0.08);
     position: relative;
@@ -334,15 +335,37 @@
     opacity: 0.5;
   }
 
+  /* === NAME ROW + DOSAGE BADGE === */
+  .ih-name-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .ih-dosage {
+    display: inline-block;
+    border: 1.5px solid var(--ih-accent-gold);
+    color: var(--ih-accent-gold);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: var(--ih-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
   /* === META === */
   .ih-ingredient-name {
     font-family: var(--ih-font-display);
     font-size: 26px;
-    font-weight: 400;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.03em;
     color: var(--ih-text);
     margin-bottom: 4px;
-    line-height: 1.2;
+    line-height: 1;
   }
   .ih-ingredient-subtitle {
     font-family: var(--ih-font-body);
@@ -518,9 +541,9 @@
   .ih-modal-title {
     font-family: var(--ih-font-display);
     font-size: 22px;
-    font-weight: 400;
+    font-weight: 600;
     color: var(--ih-text);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.03em;
   }
   .ih-modal-ingredient {
     font-family: var(--ih-font-body);
@@ -744,6 +767,9 @@
     .ih-image-letter {
       font-size: 42px;
     }
+    .ih-name-row {
+      justify-content: flex-start;
+    }
     .ih-ingredient-name {
       font-size: 30px;
     }
@@ -944,7 +970,10 @@
             imageHtml +
           '</div>' +
         '</div>' +
-        '<h3 class="ih-ingredient-name">' + ing.fullName + '</h3>' +
+        '<div class="ih-name-row">' +
+          '<h3 class="ih-ingredient-name">' + ing.fullName + '</h3>' +
+          (ing.dosage ? '<span class="ih-dosage">' + ing.dosage + '</span>' : '') +
+        '</div>' +
         '<div class="ih-ingredient-subtitle">' + ing.subtitle + '</div>' +
         '<div class="ih-tags">' + tags + '</div>' +
         '<p class="ih-description">' + ing.description + '</p>' +
@@ -1225,6 +1254,12 @@
           "info": "Altın renkli küçük yazı (ör. \"Güzellik Minerali\")"
         },
         {
+          "type": "text",
+          "id": "dosage",
+          "label": "Miktar",
+          "info": "ör. 500 mg"
+        },
+        {
           "type": "textarea",
           "id": "description",
           "label": "Açıklama"
@@ -1386,6 +1421,7 @@
             "name": "MSM",
             "full_name": "MSM (Metilsülfonilmetan)",
             "subtitle": "Güzellik Minerali",
+            "dosage": "500 mg",
             "circle_letter": "M",
             "circle_color": "#d4a853",
             "tag_1": "Kolajen Üretimi",
@@ -1405,6 +1441,7 @@
             "name": "Kırmızı Kore Ginsengi",
             "full_name": "Kırmızı Kore Ginsengi",
             "subtitle": "Enerji ve Canlılık",
+            "dosage": "100 mg",
             "circle_letter": "K",
             "circle_color": "#c45c4a",
             "tag_1": "Kan Dolaşımı",
@@ -1424,6 +1461,7 @@
             "name": "Niasinamid",
             "full_name": "Niasinamid (Vitamin B3)",
             "subtitle": "Cilt Bariyeri Gücü",
+            "dosage": "250 mg",
             "circle_letter": "N",
             "circle_color": "#7a9e6b",
             "tag_1": "Cilt Bariyeri",
