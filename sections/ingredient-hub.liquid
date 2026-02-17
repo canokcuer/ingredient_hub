@@ -1,461 +1,19 @@
 {% comment %}
   Cyrasoul Ingredient Hub Section
-  Auto-renders correct ingredients per product based on product.handle.
+  Fully editable via Theme Customizer — add/remove ingredients as blocks,
+  edit all text, upload images, manage research links.
   Self-contained: no external JS/CSS dependencies.
 {% endcomment %}
 
-{% assign ih_show = false %}
-{% assign ih_product_name = '' %}
-{% assign ih_ingredients_json = '' %}
-
-{% case product.handle %}
-
-{% when 'dailyglow' %}
-  {% assign ih_show = true %}
-  {% assign ih_product_name = 'DailyGlow' %}
-  {% capture ih_ingredients_json %}[
-    {
-      "key": "msm",
-      "name": "MSM",
-      "fullName": "MSM (Metils\u00FClfonilmetan)",
-      "subtitle": "G\u00FCzellik Minerali",
-      "letter": "M",
-      "gradient": "linear-gradient(135deg, #d4a853 0%, #e8c97a 40%, #f0dba0 100%)",
-      "tags": ["Kolajen \u00DCretimi", "Cilt Esnekli\u011Fi", "Eklem Sa\u011Fl\u0131\u011F\u0131"],
-      "description": "Do\u011Fan\u0131n g\u00FCzellik minerali olarak bilinen MSM, kolajen \u00FCretimini destekleyerek cildinizin elastikiyetini ve p\u00FCr\u00FCzs\u00FCzl\u00FC\u011F\u00FCn\u00FC korur. Sa\u011Fl\u0131kl\u0131 sa\u00E7 ve t\u0131rnak b\u00FCy\u00FCmesine katk\u0131da bulunur.",
-      "research": [
-        { "label": "MSM ve kolajen sentezi \u00FCzerine klinik \u00E7al\u0131\u015Fma", "source": "PubMed Central", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8944283/" },
-        { "label": "MSM'in cilt sa\u011Fl\u0131\u011F\u0131 \u00FCzerindeki etkileri", "source": "PubMed Central", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10799148/" }
-      ],
-      "cert": { "label": "MSM Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "ginseng",
-      "name": "K\u0131rm\u0131z\u0131 Kore Ginsengi",
-      "fullName": "K\u0131rm\u0131z\u0131 Kore Ginsengi",
-      "subtitle": "Enerji ve Canl\u0131l\u0131k",
-      "letter": "K",
-      "gradient": "linear-gradient(135deg, #c45c4a 0%, #d98a6e 40%, #e6ab8e 100%)",
-      "tags": ["Kan Dola\u015F\u0131m\u0131", "Cilt Canl\u0131l\u0131\u011F\u0131", "Enerji"],
-      "description": "Kan dola\u015F\u0131m\u0131n\u0131 destekleyerek yorgun ve soluk cilt g\u00F6r\u00FCn\u00FCm\u00FCn\u00FC ele al\u0131r. Canl\u0131 ve \u0131\u015F\u0131lt\u0131l\u0131 bir cilt i\u00E7in geleneksel Kore bilgeli\u011Finden yararlan\u0131r.",
-      "research": [
-        { "label": "K\u0131rm\u0131z\u0131 ginseng ve cilt mikrosirk\u00FClasyonu", "source": "PubMed Central", "url": "#" },
-        { "label": "Panax ginseng'in antioksidan etkileri", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Kore Ginsengi Kalite Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "niasinamid",
-      "name": "Niasinamid",
-      "fullName": "Niasinamid (Vitamin B3)",
-      "subtitle": "Cilt Bariyeri G\u00FCc\u00FC",
-      "letter": "N",
-      "gradient": "linear-gradient(135deg, #7a9e6b 0%, #a3c08e 40%, #c2d8b0 100%)",
-      "tags": ["Cilt Bariyeri", "Nem Dengeleme", "Ayd\u0131nl\u0131k Ton"],
-      "description": "Cilt bariyerini g\u00FC\u00E7lendirerek nemi kilitler ve daha ayd\u0131nl\u0131k bir cilt tonu sa\u011Flar. G\u00F6zle g\u00F6r\u00FCl\u00FCr sonu\u00E7lar i\u00E7in klinik olarak kan\u0131tlanm\u0131\u015F bir bile\u015Fendir.",
-      "research": [
-        { "label": "Niasinamidin cilt bariyeri onar\u0131m\u0131ndaki rol\u00FC", "source": "PubMed Central", "url": "#" },
-        { "label": "Vitamin B3 ve hiperpigmentasyon tedavisi", "source": "Tandfonline", "url": "#" }
-      ],
-      "cert": { "label": "Niasinamid Safl\u0131k Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "cinko",
-      "name": "\u00C7inko",
-      "fullName": "\u00C7inko",
-      "subtitle": "Antioksidan Kalkan",
-      "letter": "C",
-      "gradient": "linear-gradient(135deg, #5b7e95 0%, #82a5b8 40%, #a8c4d4 100%)",
-      "tags": ["Antioksidan", "Ba\u011F\u0131\u015F\u0131kl\u0131k Deste\u011Fi", "H\u00FCcre Yenilenmesi"],
-      "description": "G\u00FC\u00E7l\u00FC bir antioksidan olarak serbest radikalleri n\u00F6tralize eder. H\u00FCcre yenilenmesini destekler ve ba\u011F\u0131\u015F\u0131kl\u0131k sistemini g\u00FC\u00E7lendirerek cildin savunma mekanizmas\u0131n\u0131 korur.",
-      "research": [
-        { "label": "\u00C7inkonun cilt sa\u011Fl\u0131\u011F\u0131ndaki antioksidan rol\u00FC", "source": "PubMed Central", "url": "#" },
-        { "label": "\u00C7inko takviyesi ve ba\u011F\u0131\u015F\u0131kl\u0131k fonksiyonu", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "\u00C7inko Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "selenyum",
-      "name": "Selenyum",
-      "fullName": "Selenyum",
-      "subtitle": "H\u00FCcre Koruyucusu",
-      "letter": "S",
-      "gradient": "linear-gradient(135deg, #8b6fad 0%, #a992c4 40%, #c7b6da 100%)",
-      "tags": ["Antioksidan", "Tiroid Sa\u011Fl\u0131\u011F\u0131", "H\u00FCcre Koruma"],
-      "description": "H\u00FCcreleri oksidatif strese kar\u015F\u0131 koruyan g\u00FC\u00E7l\u00FC bir iz mineraldir. Tiroid fonksiyonunu destekler ve cildin do\u011Fal yenilenme s\u00FCrecine katk\u0131da bulunur.",
-      "research": [
-        { "label": "Selenyumun antioksidan savunmadaki rol\u00FC", "source": "PubMed Central", "url": "#" },
-        { "label": "Selenyum ve tiroid fonksiyonu ili\u015Fkisi", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Selenyum Kalite Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "manganez",
-      "name": "Manganez",
-      "fullName": "Manganez",
-      "subtitle": "Kolajen Destek\u00E7i",
-      "letter": "Mn",
-      "gradient": "linear-gradient(135deg, #9b7a5b 0%, #b89a7a 40%, #d4bc9e 100%)",
-      "tags": ["Kolajen Sentezi", "Kemik Sa\u011Fl\u0131\u011F\u0131", "Metabolizma"],
-      "description": "Kolajen sentezinde kritik bir rol oynar. Kemik sa\u011Fl\u0131\u011F\u0131n\u0131 destekler ve enerji metabolizmas\u0131na katk\u0131da bulunarak genel canl\u0131l\u0131\u011Fa yard\u0131mc\u0131 olur.",
-      "research": [
-        { "label": "Manganez ve kolajen biyosentezi", "source": "PubMed Central", "url": "#" },
-        { "label": "Manganezin kemik metabolizmas\u0131ndaki rol\u00FC", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Manganez Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    }
-  ]{% endcapture %}
-
-{% when 'dreamglow' %}
-  {% assign ih_show = true %}
-  {% assign ih_product_name = 'DreamGlow' %}
-  {% capture ih_ingredients_json %}[
-    {
-      "key": "kolajen",
-      "name": "Kolajen Peptitleri",
-      "fullName": "Kolajen Peptitleri (Tip 1&3)",
-      "subtitle": "Cilt Yenilenmesi",
-      "letter": "K",
-      "gradient": "linear-gradient(135deg, #e8b4b8 0%, #f0cdd0 40%, #f7e1e3 100%)",
-      "tags": ["Cilt Elastikiyeti", "K\u0131r\u0131\u015F\u0131kl\u0131k Azaltma", "Nem Art\u0131\u015F\u0131"],
-      "description": "Tip 1 ve 3 kolajen peptitleri, cildin yap\u0131sal b\u00FCt\u00FCnl\u00FC\u011F\u00FCn\u00FC destekler. Gece boyunca cildinizin do\u011Fal onar\u0131m s\u00FCrecini g\u00FC\u00E7lendirerek sabaha daha gen\u00E7 ve canl\u0131 bir g\u00F6r\u00FCn\u00FCm kazand\u0131r\u0131r.",
-      "research": [
-        { "label": "Kolajen peptitlerinin cilt elastikiyetine etkisi", "source": "PubMed Central", "url": "#" },
-        { "label": "Oral kolajen takviyesi ve cilt ya\u015Flanmas\u0131", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Kolajen Peptit Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "melisa",
-      "name": "Melisa",
-      "fullName": "Melisa (Lemon Balm)",
-      "subtitle": "Sakinle\u015Ftirici Bitki",
-      "letter": "Me",
-      "gradient": "linear-gradient(135deg, #7db88f 0%, #a3d4b1 40%, #c8e8d2 100%)",
-      "tags": ["Uyku Kalitesi", "Stres Azaltma", "Sindirim Deste\u011Fi"],
-      "description": "Melisa, sinir sistemini yat\u0131\u015Ft\u0131rarak daha derin ve kaliteli bir uyku sa\u011Flar. Gece boyunca v\u00FCcudun do\u011Fal onar\u0131m s\u00FCrecini destekleyerek sabaha dinlenmi\u015F uyanman\u0131za yard\u0131mc\u0131 olur.",
-      "research": [
-        { "label": "Melisan\u0131n uyku kalitesi \u00FCzerindeki etkileri", "source": "PubMed Central", "url": "#" },
-        { "label": "Lemon balm ve anksiyete azaltma", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Melisa Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "papatya",
-      "name": "Papatya",
-      "fullName": "Papatya (Chamomile)",
-      "subtitle": "Do\u011Fal Rahatlama",
-      "letter": "P",
-      "gradient": "linear-gradient(135deg, #e8d44d 0%, #f0e080 40%, #f7ecb0 100%)",
-      "tags": ["Rahatlama", "Uyku Deste\u011Fi", "Anti-inflamatuar"],
-      "description": "Y\u00FCzy\u0131llard\u0131r kullan\u0131lan papatya, do\u011Fal sakinle\u015Ftirici \u00F6zellikleriyle gece rutininizin vazge\u00E7ilmezi. Cildi yat\u0131\u015Ft\u0131r\u0131rken uyku kalitesini art\u0131rarak b\u00FCt\u00FCnsel bir g\u00FCzellik deneyimi sunar.",
-      "research": [
-        { "label": "Papatyan\u0131n uyku kalitesine etkisi", "source": "PubMed Central", "url": "#" },
-        { "label": "Chamomile ve cilt yat\u0131\u015Ft\u0131rma", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Papatya Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "hyaluronik",
-      "name": "Hyal\u00FCronik Asit",
-      "fullName": "Hyal\u00FCronik Asit",
-      "subtitle": "Nem Uzman\u0131",
-      "letter": "H",
-      "gradient": "linear-gradient(135deg, #6ba3d6 0%, #92bde8 40%, #b8d5f2 100%)",
-      "tags": ["Derin Nemlendirme", "K\u0131r\u0131\u015F\u0131kl\u0131k Azaltma", "Cilt Dolgunlu\u011Fu"],
-      "description": "Kendi a\u011F\u0131rl\u0131\u011F\u0131n\u0131n 1000 kat\u0131 su tutabilen hyal\u00FCronik asit, cildinize derin nemlendirme sa\u011Flar. Gece boyunca cildi dolgunla\u015Ft\u0131rarak ince \u00E7izgilerin g\u00F6r\u00FCn\u00FCm\u00FCn\u00FC azalt\u0131r.",
-      "research": [
-        { "label": "Oral hyal\u00FCronik asit ve cilt nemlendirme", "source": "PubMed Central", "url": "#" },
-        { "label": "Hyal\u00FCronik asidin anti-aging etkileri", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Hyal\u00FCronik Asit Safl\u0131k Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "lteanin",
-      "name": "L-Teanin",
-      "fullName": "L-Teanin",
-      "subtitle": "Zihinsel Dinginlik",
-      "letter": "L",
-      "gradient": "linear-gradient(135deg, #8fa8c8 0%, #b0c5dc 40%, #d0dde8 100%)",
-      "tags": ["Rahatlama", "Uyku Kalitesi", "Zihinsel Berrakl\u0131k"],
-      "description": "Ye\u015Fil \u00E7ayda do\u011Fal olarak bulunan L-teanin, alfa beyin dalgalar\u0131n\u0131 art\u0131rarak sakin bir uyan\u0131kl\u0131k hali sa\u011Flar. Gece form\u00FCl\u00FCnde derin ve onar\u0131c\u0131 uykuyu destekler.",
-      "research": [
-        { "label": "L-teaninin uyku kalitesine etkisi", "source": "PubMed Central", "url": "#" },
-        { "label": "Teanin ve alfa beyin dalgalar\u0131", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "L-Teanin Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "vitaminc",
-      "name": "C Vitamini",
-      "fullName": "C Vitamini",
-      "subtitle": "Ayd\u0131nl\u0131k Form\u00FCl",
-      "letter": "C",
-      "gradient": "linear-gradient(135deg, #e8a040 0%, #f0b868 40%, #f7d090 100%)",
-      "tags": ["Kolajen Sentezi", "Antioksidan", "Cilt Ayd\u0131nlatma"],
-      "description": "G\u00FC\u00E7l\u00FC bir antioksidan olan C vitamini, kolajen sentezini destekleyerek cildin s\u0131k\u0131l\u0131\u011F\u0131n\u0131 korur. Gece boyunca serbest radikallere kar\u015F\u0131 koruma sa\u011Flayarak daha ayd\u0131nl\u0131k bir cilt tonuna katk\u0131da bulunur.",
-      "research": [
-        { "label": "C vitamininin kolajen sentezindeki rol\u00FC", "source": "PubMed Central", "url": "#" },
-        { "label": "Askorbik asit ve cilt foto-koruma", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "C Vitamini Safl\u0131k Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    }
-  ]{% endcapture %}
-
-{% when 'mindfuel' %}
-  {% assign ih_show = true %}
-  {% assign ih_product_name = 'MindFuel' %}
-  {% capture ih_ingredients_json %}[
-    {
-      "key": "maca",
-      "name": "Maca",
-      "fullName": "Maca",
-      "subtitle": "Enerji K\u00F6k\u00FC",
-      "letter": "Ma",
-      "gradient": "linear-gradient(135deg, #c49a6c 0%, #d8b48a 40%, #e8cca8 100%)",
-      "tags": ["Enerji", "Dayan\u0131kl\u0131l\u0131k", "Hormonal Denge"],
-      "description": "Peru da\u011Flar\u0131ndan gelen maca k\u00F6k\u00FC, do\u011Fal enerji seviyelerini y\u00FCkselterek g\u00FCn boyu aktif kalman\u0131z\u0131 sa\u011Flar. Hormonal dengeyi destekleyerek genel canl\u0131l\u0131\u011F\u0131 art\u0131r\u0131r.",
-      "research": [
-        { "label": "Maca k\u00F6k\u00FCn\u00FCn enerji ve dayan\u0131kl\u0131l\u0131\u011Fa etkisi", "source": "PubMed Central", "url": "#" },
-        { "label": "Lepidium meyenii ve hormonal denge", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Maca K\u00F6k\u00FC Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "ltirozin",
-      "name": "L-Tirozin",
-      "fullName": "L-Tirozin",
-      "subtitle": "Odaklanma Aminoasidi",
-      "letter": "L",
-      "gradient": "linear-gradient(135deg, #5e8fbd 0%, #82aed4 40%, #a8cae6 100%)",
-      "tags": ["Odaklanma", "Mental Performans", "Motivasyon"],
-      "description": "Dopamin ve noradrenalin \u00FCretimini destekleyen L-tirozin, zihinsel berrakl\u0131\u011F\u0131 ve odaklanmay\u0131 art\u0131r\u0131r. Stresli d\u00F6nemlerde kognitif performans\u0131 koruyarak daha \u00FCretken olman\u0131z\u0131 sa\u011Flar.",
-      "research": [
-        { "label": "L-tirozin ve kognitif performans", "source": "PubMed Central", "url": "#" },
-        { "label": "Tirozin takviyesinin stres alt\u0131nda etkisi", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "L-Tirozin Safl\u0131k Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "panaxginseng",
-      "name": "Panax Ginseng",
-      "fullName": "Panax Ginseng",
-      "subtitle": "Adaptojenik G\u00FC\u00E7",
-      "letter": "P",
-      "gradient": "linear-gradient(135deg, #b85c4a 0%, #d08a6e 40%, #e0a890 100%)",
-      "tags": ["Adaptojenik", "Enerji", "Bili\u015Fsel Destek"],
-      "description": "Binlerce y\u0131ll\u0131k gelene\u011Fe sahip Panax ginseng, v\u00FCcudun strese uyumunu destekler. Hem fiziksel dayan\u0131kl\u0131l\u0131\u011F\u0131 hem de zihinsel performans\u0131 art\u0131rarak g\u00FCnl\u00FCk ya\u015Fam\u0131n\u0131zda fark yarat\u0131r.",
-      "research": [
-        { "label": "Panax ginseng ve bili\u015Fsel fonksiyon", "source": "PubMed Central", "url": "#" },
-        { "label": "Ginseng'in adaptojenik etki mekanizmas\u0131", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Panax Ginseng Kalite Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "ginkgo",
-      "name": "Ginkgo Biloba",
-      "fullName": "Ginkgo Biloba",
-      "subtitle": "Beyin Dostu Yaprak",
-      "letter": "G",
-      "gradient": "linear-gradient(135deg, #6aaa6a 0%, #8ec48e 40%, #b2dab2 100%)",
-      "tags": ["Haf\u0131za", "Kan Dola\u015F\u0131m\u0131", "Antioksidan"],
-      "description": "D\u00FCnyan\u0131n en eski a\u011Fa\u00E7 t\u00FCrlerinden biri olan ginkgo, beyin kan dola\u015F\u0131m\u0131n\u0131 destekleyerek haf\u0131za ve konsantrasyonu g\u00FC\u00E7lendirir. G\u00FC\u00E7l\u00FC antioksidan \u00F6zellikleri ile beyin h\u00FCcrelerini korur.",
-      "research": [
-        { "label": "Ginkgo biloba ve haf\u0131za g\u00FC\u00E7lendirme", "source": "PubMed Central", "url": "#" },
-        { "label": "Ginkgo'nun serebral kan ak\u0131\u015F\u0131na etkisi", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Ginkgo Biloba Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "b12",
-      "name": "Vitamin B12",
-      "fullName": "Vitamin B12",
-      "subtitle": "Enerji Vitamini",
-      "letter": "B12",
-      "gradient": "linear-gradient(135deg, #d45c7e 0%, #e8829e 40%, #f0a8be 100%)",
-      "tags": ["Enerji Metabolizmas\u0131", "Sinir Sistemi", "Kan Yap\u0131m\u0131"],
-      "description": "Enerji metabolizmas\u0131n\u0131n temel ta\u015F\u0131 olan B12 vitamini, yorgunluk ve halsizli\u011Fin azalt\u0131lmas\u0131na katk\u0131da bulunur. Sinir sistemini destekleyerek zihinsel berrakl\u0131\u011F\u0131 korur.",
-      "research": [
-        { "label": "B12 vitamini ve enerji metabolizmas\u0131", "source": "PubMed Central", "url": "#" },
-        { "label": "Kobalamin eksikli\u011Fi ve n\u00F6rolojik etkiler", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Vitamin B12 Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    }
-  ]{% endcapture %}
-
-{% when 'reset-button' %}
-  {% assign ih_show = true %}
-  {% assign ih_product_name = 'Reset Button' %}
-  {% capture ih_ingredients_json %}[
-    {
-      "key": "devedikeni",
-      "name": "Deve Dikeni",
-      "fullName": "Deve Dikeni (Milk Thistle)",
-      "subtitle": "Karaci\u011Fer Koruyucusu",
-      "letter": "D",
-      "gradient": "linear-gradient(135deg, #8b7bb5 0%, #a99ccf 40%, #c7bde0 100%)",
-      "tags": ["Karaci\u011Fer Deste\u011Fi", "Detoks", "Antioksidan"],
-      "description": "Silimarin a\u00E7\u0131s\u0131ndan zengin deve dikeni, karaci\u011Ferin do\u011Fal detoks s\u00FCrecini destekler. Karaci\u011Fer h\u00FCcrelerinin yenilenmesine katk\u0131da bulunarak v\u00FCcudunuzun ar\u0131nma kapasitesini g\u00FC\u00E7lendirir.",
-      "research": [
-        { "label": "Silimarin ve karaci\u011Fer koruma mekanizmas\u0131", "source": "PubMed Central", "url": "#" },
-        { "label": "Deve dikeni ve hepatoprotektif etkiler", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Deve Dikeni Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "enginar",
-      "name": "Enginar",
-      "fullName": "Enginar (Artichoke)",
-      "subtitle": "Sindirim Dostu",
-      "letter": "E",
-      "gradient": "linear-gradient(135deg, #5a8a5a 0%, #7caa7c 40%, #a0c8a0 100%)",
-      "tags": ["Sindirim", "Safra Ak\u0131\u015F\u0131", "Kolesterol Dengesi"],
-      "description": "Enginar ekstresi, safra \u00FCretimini ve ak\u0131\u015F\u0131n\u0131 d\u00FCzenleyerek sindirimi kolayla\u015Ft\u0131r\u0131r. Karaci\u011Fer fonksiyonlar\u0131n\u0131 desteklerken kolesterol dengesine de katk\u0131da bulunur.",
-      "research": [
-        { "label": "Enginar ekstresi ve sindirim sa\u011Fl\u0131\u011F\u0131", "source": "PubMed Central", "url": "#" },
-        { "label": "Cynara scolymus ve lipid metabolizmas\u0131", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Enginar Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "karahindiba",
-      "name": "Karahindiba",
-      "fullName": "Karahindiba (Dandelion)",
-      "subtitle": "Do\u011Fal Ar\u0131nd\u0131r\u0131c\u0131",
-      "letter": "Ka",
-      "gradient": "linear-gradient(135deg, #d4a020 0%, #e8bc48 40%, #f0d478 100%)",
-      "tags": ["Di\u00FCretik", "Karaci\u011Fer Deste\u011Fi", "Antioksidan"],
-      "description": "Karahindiba, do\u011Fal di\u00FCretik \u00F6zellikleri ile v\u00FCcuttaki fazla s\u0131v\u0131n\u0131n at\u0131lmas\u0131na yard\u0131mc\u0131 olur. Karaci\u011Fer ve b\u00F6brek fonksiyonlar\u0131n\u0131 destekleyerek b\u00FCt\u00FCnsel bir ar\u0131nma sa\u011Flar.",
-      "research": [
-        { "label": "Karahindiban\u0131n hepatoprotektif etkileri", "source": "PubMed Central", "url": "#" },
-        { "label": "Taraxacum officinale ve di\u00FCretik aktivite", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Karahindiba Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "zerdecal",
-      "name": "Zerde\u00E7al",
-      "fullName": "Zerde\u00E7al (K\u00FCrk\u00FCmin)",
-      "subtitle": "Alt\u0131n Baharat",
-      "letter": "Z",
-      "gradient": "linear-gradient(135deg, #d4920a 0%, #e8aa30 40%, #f0c460 100%)",
-      "tags": ["Anti-inflamatuar", "Antioksidan", "Sindirim Deste\u011Fi"],
-      "description": "Do\u011Fan\u0131n en g\u00FC\u00E7l\u00FC anti-inflamatuar bile\u015Fenlerinden biri olan k\u00FCrk\u00FCmin, v\u00FCcuttaki iltihab\u0131 azalt\u0131r. G\u00FC\u00E7l\u00FC antioksidan \u00F6zellikleri ile h\u00FCcreleri serbest radikal hasar\u0131ndan korur.",
-      "research": [
-        { "label": "K\u00FCrk\u00FCminin anti-inflamatuar mekanizmalar\u0131", "source": "PubMed Central", "url": "#" },
-        { "label": "Zerde\u00E7al ve sindirim sistemi sa\u011Fl\u0131\u011F\u0131", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Zerde\u00E7al Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "moringa",
-      "name": "Moringa",
-      "fullName": "Moringa",
-      "subtitle": "Mucize A\u011Fac\u0131",
-      "letter": "Mo",
-      "gradient": "linear-gradient(135deg, #4a8a4a 0%, #6aaa6a 40%, #90c890 100%)",
-      "tags": ["Besin Yo\u011Fun", "Enerji", "Ba\u011F\u0131\u015F\u0131kl\u0131k"],
-      "description": "Mucize a\u011Fac\u0131 olarak bilinen moringa, 90'dan fazla besin maddesi i\u00E7erir. Vitamin ve mineral a\u00E7\u0131s\u0131ndan zengin yap\u0131s\u0131yla ba\u011F\u0131\u015F\u0131kl\u0131k sistemini destekler ve do\u011Fal enerji sa\u011Flar.",
-      "research": [
-        { "label": "Moringa oleifera'n\u0131n besin de\u011Feri analizi", "source": "PubMed Central", "url": "#" },
-        { "label": "Moringa ve ba\u011F\u0131\u015F\u0131kl\u0131k sistemi modulasyonu", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Moringa Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    }
-  ]{% endcapture %}
-
-{% when 'thechill' %}
-  {% assign ih_show = true %}
-  {% assign ih_product_name = 'TheChill' %}
-  {% capture ih_ingredients_json %}[
-    {
-      "key": "rhodiola",
-      "name": "Rhodiola",
-      "fullName": "Rhodiola Rosea",
-      "subtitle": "Stres Kalkan\u0131",
-      "letter": "R",
-      "gradient": "linear-gradient(135deg, #8b5e83 0%, #aa7ea2 40%, #c8a0c0 100%)",
-      "tags": ["Adaptojenik", "Stres Y\u00F6netimi", "Zihinsel Denge"],
-      "description": "G\u00FC\u00E7l\u00FC bir adaptojen olan rhodiola, v\u00FCcudun stresle ba\u015Fa \u00E7\u0131kma kapasitesini art\u0131r\u0131r. Kortizol seviyelerini dengeleyerek hem fiziksel hem de zihinsel dayan\u0131kl\u0131l\u0131\u011F\u0131 destekler.",
-      "research": [
-        { "label": "Rhodiola rosea ve stres adaptasyonu", "source": "PubMed Central", "url": "#" },
-        { "label": "Rhodiola'n\u0131n kortizol seviyeleri \u00FCzerindeki etkisi", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Rhodiola Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "passiflora",
-      "name": "Passiflora",
-      "fullName": "Passiflora (\u00C7ark\u0131felek)",
-      "subtitle": "Huzur \u00C7i\u00E7e\u011Fi",
-      "letter": "Pa",
-      "gradient": "linear-gradient(135deg, #7b68ae 0%, #9b8ac8 40%, #bbaee0 100%)",
-      "tags": ["Kayg\u0131 Azaltma", "Uyku Kalitesi", "Rahatlama"],
-      "description": "\u00C7ark\u0131felek \u00E7i\u00E7e\u011Fi olarak da bilinen passiflora, GABA resept\u00F6rleri \u00FCzerindeki etkisiyle do\u011Fal bir sakinle\u015Ftiricidir. Kayg\u0131y\u0131 azaltarak huzurlu bir ruh hali ve kaliteli uyku sa\u011Flar.",
-      "research": [
-        { "label": "Passiflora incarnata ve anksiyolitik etkiler", "source": "PubMed Central", "url": "#" },
-        { "label": "Passifloran\u0131n GABA-erjik mekanizmas\u0131", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Passiflora Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "melisa",
-      "name": "Melisa",
-      "fullName": "Melisa (Melissa Officinalis)",
-      "subtitle": "Sakinle\u015Ftirici Bitki",
-      "letter": "Me",
-      "gradient": "linear-gradient(135deg, #6aaa80 0%, #8ec4a0 40%, #b2dac0 100%)",
-      "tags": ["Sinir Sistemi", "Rahatlama", "Sindirim"],
-      "description": "Melisa, sinir sistemini yat\u0131\u015Ft\u0131rarak kayg\u0131 ve gerginli\u011Fi azalt\u0131r. Hem sindirim sistemini rahatlatm\u0131r hem de g\u00FCn i\u00E7indeki stresin etkilerini hafifletir.",
-      "research": [
-        { "label": "Melissa officinalis ve anksiyete azaltma", "source": "PubMed Central", "url": "#" },
-        { "label": "Melisan\u0131n n\u00F6roprotektif etkileri", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Melisa Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "papatya",
-      "name": "Papatya",
-      "fullName": "Papatya (Chamomile)",
-      "subtitle": "Do\u011Fal Huzur",
-      "letter": "P",
-      "gradient": "linear-gradient(135deg, #d8c44d 0%, #e8d878 40%, #f0e8a0 100%)",
-      "tags": ["Rahatlama", "Anti-inflamatuar", "Uyku Deste\u011Fi"],
-      "description": "Papatyan\u0131n sakinle\u015Ftirici \u00F6zellikleri, stresin yaratt\u0131\u011F\u0131 gerginli\u011Fi azalt\u0131r. \u0130\u00E7erdi\u011Fi apigenin ile sinir sistemini yat\u0131\u015Ft\u0131rarak do\u011Fal bir rahatlama hissi sa\u011Flar.",
-      "research": [
-        { "label": "Apigenin ve sinir sistemi \u00FCzerindeki etkileri", "source": "PubMed Central", "url": "#" },
-        { "label": "Papatya \u00E7ay\u0131 ve stres azaltma", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Papatya Ekstre Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    },
-    {
-      "key": "b6b12",
-      "name": "Vitamin B6 & B12",
-      "fullName": "Vitamin B6 & B12",
-      "subtitle": "Sinir Sistemi Deste\u011Fi",
-      "letter": "B",
-      "gradient": "linear-gradient(135deg, #d45c7e 0%, #e8829e 40%, #f0a8be 100%)",
-      "tags": ["Sinir Sistemi", "Enerji", "Ruh Hali"],
-      "description": "B6 ve B12 vitaminleri, serotonin ve dopamin \u00FCretimini destekleyerek ruh halinizi dengeler. Sinir sisteminin sa\u011Fl\u0131kl\u0131 i\u015Fleyi\u015Fine katk\u0131da bulunarak stresin etkilerini azalt\u0131r.",
-      "research": [
-        { "label": "B vitaminleri ve n\u00F6rotransmitter sentezi", "source": "PubMed Central", "url": "#" },
-        { "label": "B6 vitamini ve ruh hali d\u00FCzenleme", "source": "PubMed Central", "url": "#" }
-      ],
-      "cert": { "label": "Vitamin B6 & B12 Analiz Sertifikas\u0131", "source": "Sertifika", "url": "#" }
-    }
-  ]{% endcapture %}
-
-{% endcase %}
-
-{% if ih_show %}
+{% if section.blocks.size > 0 %}
 
 <section class="ih-section" aria-label="İçerik Keşfi">
   <div class="ih-container">
 
     <header class="ih-header">
-      <span class="ih-eyebrow">{{ ih_product_name }}</span>
-      <h2 class="ih-title">İçeriklerimizi Keşfet</h2>
-      <p class="ih-subtitle-text">Her bir bileşenin ardındaki bilimi ve faydaları keşfedin</p>
+      <span class="ih-eyebrow">{{ section.settings.eyebrow | default: product.title }}</span>
+      <h2 class="ih-title">{{ section.settings.heading }}</h2>
+      <p class="ih-subtitle-text">{{ section.settings.subheading }}</p>
     </header>
 
     <div class="ih-layout">
@@ -498,8 +56,45 @@
   <div class="ih-modal-body" id="ih-modal-body"></div>
 </div>
 
-<!-- Ingredient data -->
-<script type="application/json" id="ih-data">{{ ih_ingredients_json }}</script>
+<!-- Ingredient data from blocks -->
+<script type="application/json" id="ih-data">
+[
+  {%- assign ih_sep = '' -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'ingredient' -%}
+      {{ ih_sep }}
+      {
+        "key": {{ block.id | json }},
+        "name": {{ block.settings.name | default: "İçerik" | json }},
+        "fullName": {{ block.settings.full_name | default: block.settings.name | default: "İçerik" | json }},
+        "subtitle": {{ block.settings.subtitle | default: "" | json }},
+        "letter": {{ block.settings.circle_letter | default: "?" | json }},
+        "circleColor": {{ block.settings.circle_color | json }},
+        "imageUrl": {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 300 | json }}{%- else -%}null{%- endif -%},
+        "tags": [
+          {%- assign ih_tag_sep = '' -%}
+          {%- if block.settings.tag_1 != blank -%}{{ ih_tag_sep }}{{ block.settings.tag_1 | json }}{%- assign ih_tag_sep = ',' -%}{%- endif -%}
+          {%- if block.settings.tag_2 != blank -%}{{ ih_tag_sep }}{{ block.settings.tag_2 | json }}{%- assign ih_tag_sep = ',' -%}{%- endif -%}
+          {%- if block.settings.tag_3 != blank -%}{{ ih_tag_sep }}{{ block.settings.tag_3 | json }}{%- endif -%}
+        ],
+        "description": {{ block.settings.description | default: "" | json }},
+        "research": [
+          {%- assign ih_res_sep = '' -%}
+          {%- if block.settings.research_1_label != blank -%}
+            {{ ih_res_sep }}{ "label": {{ block.settings.research_1_label | json }}, "source": {{ block.settings.research_1_source | default: "" | json }}, "url": {{ block.settings.research_1_url | default: "#" | json }} }
+            {%- assign ih_res_sep = ',' -%}
+          {%- endif -%}
+          {%- if block.settings.research_2_label != blank -%}
+            {{ ih_res_sep }}{ "label": {{ block.settings.research_2_label | json }}, "source": {{ block.settings.research_2_source | default: "" | json }}, "url": {{ block.settings.research_2_url | default: "#" | json }} }
+          {%- endif -%}
+        ],
+        "cert": { "label": {{ block.settings.cert_label | default: "" | json }}, "source": "Sertifika", "url": {{ block.settings.cert_url | default: "#" | json }} }
+      }
+      {%- assign ih_sep = ',' -%}
+    {%- endif -%}
+  {%- endfor -%}
+]
+</script>
 
 <style>
   /* === RESET (scoped) === */
@@ -1244,6 +839,25 @@
   try { ingredients = JSON.parse(dataEl.textContent); } catch(e) { return; }
   if (!ingredients || !ingredients.length) return;
 
+  /* ── Gradient helper ── */
+  function makeGradient(hex) {
+    if (!hex) return 'linear-gradient(135deg, #d4a853 0%, #e8c97a 40%, #f0dba0 100%)';
+    hex = hex.replace('#', '');
+    if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+    var r = parseInt(hex.substring(0, 2), 16);
+    var g = parseInt(hex.substring(2, 4), 16);
+    var b = parseInt(hex.substring(4, 6), 16);
+    if (isNaN(r) || isNaN(g) || isNaN(b)) return 'linear-gradient(135deg, #d4a853 0%, #e8c97a 40%, #f0dba0 100%)';
+    var mr = Math.min(255, r + Math.round((255 - r) * 0.3));
+    var mg = Math.min(255, g + Math.round((255 - g) * 0.3));
+    var mb = Math.min(255, b + Math.round((255 - b) * 0.3));
+    var lr = Math.min(255, r + Math.round((255 - r) * 0.55));
+    var lg = Math.min(255, g + Math.round((255 - g) * 0.55));
+    var lb = Math.min(255, b + Math.round((255 - b) * 0.55));
+    function h(v) { var s = v.toString(16); return s.length === 1 ? '0' + s : s; }
+    return 'linear-gradient(135deg, #' + h(r)+h(g)+h(b) + ' 0%, #' + h(mr)+h(mg)+h(mb) + ' 40%, #' + h(lr)+h(lg)+h(lb) + ' 100%)';
+  }
+
   /* ── DOM ── */
   var pillGrid    = document.getElementById('ih-pill-tabs');
   var sidebarNav  = document.getElementById('ih-sidebar-tabs');
@@ -1304,12 +918,18 @@
 
     var tags = ing.tags.map(function(t) { return '<span class="ih-tag">' + t + '</span>'; }).join('');
 
+    var gradient = ing.gradient || makeGradient(ing.circleColor);
+    var imageHtml = '<span class="ih-image-letter">' + ing.letter + '</span>';
+    if (ing.imageUrl) {
+      imageHtml += '<img src="' + ing.imageUrl + '" alt="' + ing.name + '" loading="lazy">';
+    }
+
     panel.innerHTML =
       '<div class="ih-detail-inner">' +
         '<div class="ih-image-container">' +
           '<div class="ih-image-ring"></div>' +
-          '<div class="ih-image" style="background:' + ing.gradient + '">' +
-            '<span class="ih-image-letter">' + ing.letter + '</span>' +
+          '<div class="ih-image" style="background:' + gradient + '">' +
+            imageHtml +
           '</div>' +
         '</div>' +
         '<h3 class="ih-ingredient-name">' + ing.fullName + '</h3>' +
@@ -1553,6 +1173,12 @@
   "settings": [
     {
       "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "info": "Small text above the heading. Falls back to product title if empty."
+    },
+    {
+      "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "İçeriklerimizi Keşfet"
@@ -1564,10 +1190,205 @@
       "default": "Her bir bileşenin ardındaki bilimi ve faydaları keşfedin"
     }
   ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "İçerik (Ingredient)",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Temel Bilgiler"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Kısa isim",
+          "info": "Sidebar ve pill butonlarında görünür (ör. \"MSM\")"
+        },
+        {
+          "type": "text",
+          "id": "full_name",
+          "label": "Tam isim",
+          "info": "Detay panelindeki başlık (ör. \"MSM (Metilsülfonilmetan)\")"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Alt başlık",
+          "info": "Altın renkli küçük yazı (ör. \"Güzellik Minerali\")"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Açıklama"
+        },
+        {
+          "type": "header",
+          "content": "Görsel"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "İçerik görseli",
+          "info": "Yüklenirse gradient dairenin üstüne yerleşir. Boş bırakılırsa harf gösterilir."
+        },
+        {
+          "type": "text",
+          "id": "circle_letter",
+          "label": "Daire harfi",
+          "info": "Görsel yoksa dairede gösterilecek harf (ör. \"M\")",
+          "default": "?"
+        },
+        {
+          "type": "color",
+          "id": "circle_color",
+          "label": "Daire rengi",
+          "info": "Gradient dairenin temel rengi",
+          "default": "#d4a853"
+        },
+        {
+          "type": "header",
+          "content": "Etiketler"
+        },
+        {
+          "type": "text",
+          "id": "tag_1",
+          "label": "Etiket 1"
+        },
+        {
+          "type": "text",
+          "id": "tag_2",
+          "label": "Etiket 2"
+        },
+        {
+          "type": "text",
+          "id": "tag_3",
+          "label": "Etiket 3"
+        },
+        {
+          "type": "header",
+          "content": "Araştırma Linki 1"
+        },
+        {
+          "type": "text",
+          "id": "research_1_label",
+          "label": "Başlık"
+        },
+        {
+          "type": "url",
+          "id": "research_1_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "research_1_source",
+          "label": "Kaynak adı",
+          "info": "ör. \"PubMed Central\""
+        },
+        {
+          "type": "header",
+          "content": "Araştırma Linki 2"
+        },
+        {
+          "type": "text",
+          "id": "research_2_label",
+          "label": "Başlık"
+        },
+        {
+          "type": "url",
+          "id": "research_2_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "research_2_source",
+          "label": "Kaynak adı"
+        },
+        {
+          "type": "header",
+          "content": "Sertifika"
+        },
+        {
+          "type": "text",
+          "id": "cert_label",
+          "label": "Sertifika başlığı"
+        },
+        {
+          "type": "url",
+          "id": "cert_url",
+          "label": "Sertifika URL"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "Ingredient Hub",
-      "category": "Product Information"
+      "category": "Product Information",
+      "settings": {
+        "heading": "İçeriklerimizi Keşfet",
+        "subheading": "Her bir bileşenin ardındaki bilimi ve faydaları keşfedin"
+      },
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "MSM",
+            "full_name": "MSM (Metilsülfonilmetan)",
+            "subtitle": "Güzellik Minerali",
+            "circle_letter": "M",
+            "circle_color": "#d4a853",
+            "tag_1": "Kolajen Üretimi",
+            "tag_2": "Cilt Esnekliği",
+            "tag_3": "Eklem Sağlığı",
+            "description": "Doğanın güzellik minerali olarak bilinen MSM, kolajen üretimini destekleyerek cildinizin elastikiyetini ve pürüzsüzlüğünü korur. Sağlıklı saç ve tırnak büyümesine katkıda bulunur.",
+            "research_1_label": "MSM ve kolajen sentezi üzerine klinik çalışma",
+            "research_1_source": "PubMed Central",
+            "research_2_label": "MSM'in cilt sağlığı üzerindeki etkileri",
+            "research_2_source": "PubMed Central",
+            "cert_label": "MSM Analiz Sertifikası"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Kırmızı Kore Ginsengi",
+            "full_name": "Kırmızı Kore Ginsengi",
+            "subtitle": "Enerji ve Canlılık",
+            "circle_letter": "K",
+            "circle_color": "#c45c4a",
+            "tag_1": "Kan Dolaşımı",
+            "tag_2": "Cilt Canlılığı",
+            "tag_3": "Enerji",
+            "description": "Kan dolaşımını destekleyerek yorgun ve soluk cilt görünümünü ele alır. Canlı ve ışıltılı bir cilt için geleneksel Kore bilgeliğinden yararlanır.",
+            "research_1_label": "Kırmızı ginseng ve cilt mikrosirkülasyonu",
+            "research_1_source": "PubMed Central",
+            "research_2_label": "Panax ginseng'in antioksidan etkileri",
+            "research_2_source": "PubMed Central",
+            "cert_label": "Kore Ginsengi Kalite Sertifikası"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Niasinamid",
+            "full_name": "Niasinamid (Vitamin B3)",
+            "subtitle": "Cilt Bariyeri Gücü",
+            "circle_letter": "N",
+            "circle_color": "#7a9e6b",
+            "tag_1": "Cilt Bariyeri",
+            "tag_2": "Nem Dengeleme",
+            "tag_3": "Aydınlık Ton",
+            "description": "Cilt bariyerini güçlendirerek nemi kilitler ve daha aydınlık bir cilt tonu sağlar. Gözle görülür sonuçlar için klinik olarak kanıtlanmış bir bileşendir.",
+            "research_1_label": "Niasinamidin cilt bariyeri onarımındaki rolü",
+            "research_1_source": "PubMed Central",
+            "research_2_label": "Vitamin B3 ve hiperpigmentasyon tedavisi",
+            "research_2_source": "Tandfonline",
+            "cert_label": "Niasinamid Saflık Sertifikası"
+          }
+        }
+      ]
     }
   ]
 }
