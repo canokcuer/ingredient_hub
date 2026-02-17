@@ -11,7 +11,6 @@
   <div class="ih-container">
 
     <header class="ih-header">
-      <span class="ih-eyebrow">{{ section.settings.eyebrow | default: product.title }}</span>
       <h2 class="ih-title">{{ section.settings.heading }}</h2>
       <p class="ih-subtitle-text">{{ section.settings.subheading }}</p>
     </header>
@@ -166,16 +165,7 @@
   /* === HEADER === */
   .ih-header {
     text-align: center;
-    margin-bottom: 36px;
-  }
-  .ih-eyebrow {
-    font-family: var(--ih-font-body);
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--ih-accent-gold);
-    margin-bottom: 12px;
-    display: block;
+    margin-bottom: 28px;
   }
   .ih-title {
     font-family: var(--ih-font-display);
@@ -662,7 +652,7 @@
       padding: 64px 0 72px;
     }
     .ih-header {
-      margin-bottom: 44px;
+      margin-bottom: 36px;
     }
     .ih-title {
       font-size: 40px;
@@ -1193,12 +1183,6 @@
   "tag": "section",
   "class": "ingredient-hub-section",
   "settings": [
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow text",
-      "info": "Small text above the heading. Falls back to product title if empty."
-    },
     {
       "type": "text",
       "id": "heading",
